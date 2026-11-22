@@ -27,15 +27,19 @@
 
 * {
   box-sizing: border-box;
+  min-width: 0;
 }
 
 html {
   scroll-behavior: smooth;
   background: var(--night);
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 body {
   margin: 0;
+  max-width: 100%;
   background-color: var(--night);
   background-image: radial-gradient(ellipse 80% 55% at 50% 0%, rgba(44, 35, 29, 0.34), transparent 72%);
   color: var(--vellum);
@@ -208,10 +212,12 @@ h1 em {
   top: 0;
   z-index: 25;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  padding: 18px clamp(20px, 5vw, 72px);
-  background: rgba(17, 15, 18, 0.9);
+  gap: 10px 20px;
+  padding: 14px clamp(16px, 5vw, 72px);
+  background: rgba(17, 15, 18, 0.92);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--rule);
 }
@@ -219,7 +225,7 @@ h1 em {
 .brand {
   font-family: "Cormorant Garamond", Georgia, serif;
   font-weight: 500;
-  font-size: 22px;
+  font-size: clamp(20px, 2.4vw, 23px);
   letter-spacing: 0.01em;
   color: var(--vellum);
 }
@@ -230,19 +236,23 @@ h1 em {
 
 .top-actions {
   display: flex;
-  gap: 22px;
+  flex-wrap: wrap;
+  gap: 8px 20px;
   align-items: center;
 }
 
 .top-actions button {
   font-family: "IBM Plex Mono", monospace;
   font-size: 10px;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.13em;
   text-transform: uppercase;
   background: none;
   border: 0;
   color: var(--ash);
-  padding: 6px 0;
+  min-height: 36px;
+  padding: 8px 4px;
+  display: inline-flex;
+  align-items: center;
   transition: color 0.25s ease;
 }
 
@@ -309,7 +319,7 @@ h1 em {
 .toolbar {
   display: flex;
   flex-wrap: wrap;
-  gap: 9px;
+  gap: 8px;
   margin: 0 0 24px;
   align-items: center;
 }
@@ -317,6 +327,7 @@ h1 em {
 .filter {
   border: 1px solid var(--rule);
   background: transparent;
+  min-height: 36px;
   padding: 8px 13px;
   color: var(--ash);
   font-family: "IBM Plex Mono", monospace;
@@ -365,6 +376,7 @@ h1 em {
 .view-toggle button {
   border: 0;
   background: transparent;
+  min-height: 36px;
   padding: 7px 12px;
   color: var(--ash);
   font-family: "IBM Plex Mono", monospace;
@@ -391,7 +403,8 @@ h1 em {
   font-size: 10px;
   letter-spacing: 0.13em;
   text-transform: uppercase;
-  padding: 7px 4px;
+  min-height: 36px;
+  padding: 7px 6px;
   transition: color 0.25s ease;
 }
 
@@ -402,7 +415,8 @@ h1 em {
 /* Memory Field — Scattered Table & Contact Sheet */
 #memory-field {
   position: relative;
-  min-height: 600px;
+  width: 100%;
+  min-height: 580px;
   border: 1px solid var(--rule);
   background: var(--night-soft);
   overflow: hidden;
@@ -411,16 +425,16 @@ h1 em {
 
 #memory-field.contact-mode {
   min-height: auto;
-  padding: clamp(20px, 3vw, 34px);
+  padding: clamp(16px, 3vw, 34px);
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
   gap: 20px;
   overflow: visible;
 }
 
 .memory-photo {
   position: absolute;
-  width: clamp(128px, 15vw, 195px);
+  width: clamp(124px, 15vw, 195px);
   padding: 8px 8px 28px;
   background: var(--vellum);
   box-shadow: 0 14px 34px rgba(0, 0, 0, 0.52), 0 1px 2px rgba(0, 0, 0, 0.35);
@@ -601,7 +615,7 @@ h1 em {
 
 /* Interlude Quote with Faded Background Portrait */
 .interlude {
-  padding: clamp(100px, 14vw, 165px) 24px;
+  padding: clamp(80px, 13vw, 165px) clamp(18px, 5vw, 32px);
   text-align: center;
   border-top: 1px solid var(--rule);
   border-bottom: 1px solid var(--rule);
@@ -615,12 +629,12 @@ h1 em {
 
 .interlude blockquote {
   max-width: 780px;
-  margin: 24px auto 0;
+  margin: 22px auto 0;
   font-family: "Cormorant Garamond", Georgia, serif;
   font-style: italic;
   font-weight: 400;
-  font-size: clamp(32px, 5vw, 58px);
-  line-height: 1.16;
+  font-size: clamp(27px, 4.8vw, 58px);
+  line-height: 1.18;
   color: var(--vellum);
 }
 
@@ -683,11 +697,11 @@ h1 em {
 .chapter-detail {
   display: none;
   margin-top: 28px;
-  padding: clamp(28px, 4.5vw, 48px);
+  padding: clamp(24px, 4.5vw, 48px);
   background: var(--vellum);
   color: var(--ink-dark);
-  grid-template-columns: minmax(240px, 0.9fr) minmax(0, 1.1fr);
-  gap: clamp(24px, 4vw, 44px);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
+  gap: clamp(22px, 4vw, 44px);
   align-items: center;
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
 }
@@ -807,16 +821,16 @@ h1 em {
 
 .letters-layout {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 22px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
 }
 
 .envelope {
-  min-height: 210px;
+  min-height: 196px;
   border: 1px solid var(--rule);
   background: rgba(23, 20, 25, 0.82);
   backdrop-filter: blur(4px);
-  padding: 32px 28px;
+  padding: clamp(24px, 3vw, 32px) clamp(20px, 3vw, 28px);
   text-align: left;
   display: flex;
   flex-direction: column;
@@ -856,25 +870,26 @@ h1 em {
 
 /* Final Room — Deep, Quiet Closing with Faded Background Portrait */
 .final-room {
-  min-height: 86vh;
+  min-height: 86svh;
   display: grid;
   place-items: center;
   text-align: center;
-  padding: clamp(100px, 14vw, 160px) 24px;
+  padding: clamp(84px, 13vw, 160px) clamp(18px, 5vw, 28px);
   border-top: 1px solid var(--rule);
   background: var(--night-soft);
 }
 
 .final-inner {
+  width: 100%;
   max-width: 640px;
 }
 
 .final-inner h2 {
   font-family: "Cormorant Garamond", Georgia, serif;
   font-weight: 400;
-  font-size: clamp(50px, 8vw, 94px);
-  line-height: 0.9;
-  margin: 22px 0 40px;
+  font-size: clamp(44px, 8vw, 94px);
+  line-height: 0.92;
+  margin: 20px 0 34px;
   color: var(--vellum);
 }
 
@@ -885,8 +900,8 @@ h1 em {
 
 .final-inner p {
   font-family: "Newsreader", Georgia, serif;
-  font-size: 18.5px;
-  line-height: 1.92;
+  font-size: clamp(16.5px, 2vw, 18.5px);
+  line-height: 1.9;
   color: var(--vellum-warm);
   white-space: pre-line;
   margin: 0;
@@ -953,7 +968,7 @@ footer {
   background: rgba(11, 10, 12, 0.94);
   display: none;
   place-items: center;
-  padding: 24px;
+  padding: clamp(12px, 3vw, 24px);
   backdrop-filter: blur(10px);
 }
 
@@ -965,13 +980,13 @@ footer {
 .modal-box {
   position: relative;
   max-width: 1060px;
-  width: 92vw;
-  max-height: 88vh;
+  width: min(92vw, 1060px);
+  max-height: 88dvh;
   background: var(--night-soft);
   border: 1px solid rgba(232, 223, 209, 0.14);
   box-shadow: 0 28px 80px rgba(0, 0, 0, 0.78);
   display: grid;
-  grid-template-columns: minmax(0, 1.25fr) minmax(320px, 0.85fr);
+  grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.85fr);
   overflow: hidden;
 }
 
@@ -983,14 +998,14 @@ footer {
   justify-content: center;
   padding: 24px;
   min-height: 360px;
-  max-height: 82vh;
+  max-height: 82dvh;
   overflow: hidden;
   border-right: 1px solid rgba(232, 223, 209, 0.1);
 }
 
 .modal-media img {
   max-width: 100%;
-  max-height: 74vh;
+  max-height: 74dvh;
   width: auto;
   height: auto;
   object-fit: contain;
@@ -1045,7 +1060,7 @@ footer {
 .modal-copy {
   padding: 36px 36px 32px;
   overflow-y: auto;
-  max-height: 82vh;
+  max-height: 82dvh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -1081,17 +1096,21 @@ footer {
 
 .modal-close {
   position: absolute;
-  right: 18px;
-  top: 18px;
+  right: 16px;
+  top: 16px;
   z-index: 40;
-  border: 1px solid rgba(232, 223, 209, 0.18);
+  border: 1px solid rgba(232, 223, 209, 0.22);
   background: #171419;
   color: var(--vellum);
   font-family: "IBM Plex Mono", monospace;
   font-size: 10px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  padding: 7px 12px;
+  min-height: 36px;
+  padding: 8px 13px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   transition: border-color 0.25s ease, color 0.25s ease;
 }
 
@@ -1104,15 +1123,16 @@ footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 18px;
-  padding-top: 18px;
+  gap: 12px;
+  padding-top: 16px;
   border-top: 1px solid var(--rule);
 }
 
 .modal-nav button {
   background: none;
   border: 0;
-  padding: 6px 0;
+  min-height: 40px;
+  padding: 8px 4px;
   color: var(--ash);
   font-family: "IBM Plex Mono", monospace;
   font-size: 10px;
@@ -1130,9 +1150,9 @@ footer {
   position: relative;
   max-width: 620px;
   width: 100%;
-  max-height: 88vh;
+  max-height: 90dvh;
   overflow-y: auto;
-  padding: clamp(28px, 5vw, 52px);
+  padding: clamp(22px, 5vw, 52px);
   background: var(--vellum);
   color: var(--ink-dark);
   box-shadow: 0 28px 80px rgba(0, 0, 0, 0.7);
@@ -1162,7 +1182,10 @@ footer {
   font-size: 9.5px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  padding: 6px 11px;
+  min-height: 36px;
+  padding: 7px 12px;
+  display: inline-flex;
+  align-items: center;
   transition: border-color 0.25s ease, background 0.25s ease;
 }
 
@@ -1195,48 +1218,102 @@ footer {
   border-top: 1px solid rgba(31, 27, 24, 0.14);
   color: #6d6156;
 }
+
+.toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translate(-50%, 16px);
+  max-width: calc(100vw - 32px);
+  text-align: center;
+  background: var(--vellum);
+  color: var(--ink-dark);
+  padding: 10px 18px;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  z-index: 45;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+/* Tablet Breakpoint (641px - 1024px) */
+@media (max-width: 1024px) {
+  #memory-field.contact-mode {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+  }
+}
+
+/* Mobile & Narrow Tablet Breakpoint (<= 820px) */
 @media (max-width: 820px) {
   .section-head {
     display: block;
+    margin-bottom: 30px;
   }
   .section-head p {
-    margin-top: 18px;
+    margin-top: 16px;
+  }
+  .tool-spacer {
+    display: none;
+  }
+  .view-controls {
+    width: 100%;
+    justify-content: space-between;
+    padding-top: 4px;
   }
   .chapter-row {
     grid-template-columns: 1fr auto;
     gap: 8px 16px;
+    padding: 20px 6px;
   }
   .chapter-row .num {
     grid-column: 1 / -1;
   }
   .chapter-detail {
     grid-template-columns: 1fr;
-    gap: 22px;
+    gap: 20px;
+    padding: 22px 18px;
   }
   .chapter-detail-media {
-    max-height: 360px;
+    width: 100%;
+    max-height: 52vh;
   }
   .modal {
-    padding: 14px;
+    padding: 10px;
   }
   .modal-box {
     grid-template-columns: 1fr;
     width: 100%;
-    max-height: 92vh;
+    max-height: 92dvh;
     overflow-y: auto;
   }
+  .modal-close {
+    position: sticky;
+    top: 10px;
+    margin: 10px 10px 0 auto;
+    width: fit-content;
+  }
   .modal-media {
-    min-height: 220px;
-    max-height: 46vh;
-    padding: 46px 16px 18px;
+    min-height: 200px;
+    max-height: 44dvh;
+    padding: 12px 16px 18px;
     border-right: 0;
     border-bottom: 1px solid rgba(232, 223, 209, 0.1);
   }
   .modal-media img {
-    max-height: 38vh;
+    max-height: 38dvh;
   }
   .modal-fallback {
-    width: min(220px, 100%);
+    width: min(210px, 100%);
     padding: 16px;
   }
   .modal-fallback .fallback-title {
@@ -1245,37 +1322,79 @@ footer {
   .modal-copy {
     max-height: none;
     overflow-y: visible;
-    padding: 24px 22px 24px;
+    padding: 20px 18px 22px;
+    gap: 18px;
   }
   .modal-copy-body {
     padding-top: 0;
   }
+  .modal-nav {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .modal-nav button {
+    flex: 1 1 120px;
+    border: 1px solid var(--rule);
+    padding: 10px 12px;
+    text-align: center;
+  }
 }
 
-@media (max-width: 520px) {
+/* Mobile Breakpoint (< 560px) */
+@media (max-width: 560px) {
   .topbar {
-    padding: 15px 18px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 12px 16px;
   }
   .top-actions {
-    gap: 11px;
+    width: 100%;
+    justify-content: space-between;
+    gap: 8px;
+    border-top: 1px solid var(--rule);
+    padding-top: 6px;
   }
   .top-actions button {
     font-size: 9px;
     letter-spacing: 0.1em;
+    padding: 6px 2px;
   }
   .section {
-    padding: 76px 18px;
+    padding: 68px 16px;
+  }
+  .toolbar {
+    gap: 6px;
+  }
+  .filter {
+    padding: 7px 10px;
+    font-size: 9.5px;
   }
   #memory-field {
-    min-height: 520px;
+    min-height: 480px;
+  }
+  .memory-photo {
+    width: clamp(114px, 34vw, 152px);
+    padding: 6px 6px 24px;
+  }
+  .memory-photo .photo-title {
+    font-size: 13.5px;
+    padding-top: 6px;
   }
   #memory-field.contact-mode {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 12px;
-    padding: 14px;
+    padding: 12px;
   }
   .field-hint span:first-child {
     display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .letters-layout {
+    grid-template-columns: 1fr;
+    gap: 14px;
   }
 }
 
@@ -1355,9 +1474,6 @@ footer {
    <blockquote>“Some of the smallest moments<br>leave the longest shadows.”</blockquote>
   </div>
 
-  <!-- 02 / THE CHAPTERS (Reading sheet has faded background portrait) -->
-  <section class="section" id="chapters">
-   <div class="section-head">
   <!-- 02 / THE CHAPTERS (Left photo + right reading sheet with faded background portrait) -->
   <section class="section" id="chapters">
    <div class="section-head">
@@ -1454,6 +1570,9 @@ I wish you peace, happiness and a life that is kind to you.</p>
     <button id="nextMemory">Next →</button>
    </div>
   </div>
+ </div>
+</div>
+
 <!-- LETTER MODAL (with faded background portrait & non-overlapping header) -->
 <div class="modal" id="letterModal" role="dialog" aria-modal="true" aria-label="Message">
  <div class="letter-sheet has-portrait-bg">
@@ -1854,27 +1973,64 @@ function enterArchive() {
 
 $("begin").addEventListener("click", enterArchive);
 
-// Compute natural, non-clumped positions for scattered prints
+// Compute natural, strictly bounded pixel positions for scattered prints
+function getResponsiveCardWidth(fieldW) {
+  if (fieldW < 420) return Math.max(112, Math.floor(fieldW * 0.36));
+  if (fieldW < 640) return Math.max(122, Math.floor(fieldW * 0.31));
+  if (fieldW < 1024) return Math.min(176, Math.floor(fieldW * 0.21));
+  return Math.min(195, Math.max(145, Math.floor(fieldW * 0.15)));
+}
+
 function computeScatterLayout(list) {
   const count = list.length;
-  const cols = window.innerWidth < 640 ? 2 : window.innerWidth < 1024 ? 4 : 5;
+  const fieldW = Math.max(280, field.clientWidth || window.innerWidth - 32);
+  const cardW = getResponsiveCardWidth(fieldW);
+  const cardH = Math.round(cardW * 1.25) + 34;
+  const pad = 10;
+
+  const cols = fieldW < 520 ? 2 : fieldW < 860 ? 3 : fieldW < 1160 ? 4 : 5;
   const rows = Math.max(1, Math.ceil(count / cols));
-  const rowHeight = window.innerWidth < 640 ? 225 : 255;
-  const tableHeight = Math.max(600, rows * rowHeight + 110);
+  const rowHeight = cardH + (fieldW < 560 ? 24 : 38);
+  const tableHeight = Math.max(fieldW < 560 ? 480 : 600, rows * rowHeight + pad * 2);
   field.style.minHeight = `${tableHeight}px`;
 
-  const cellW = 82 / cols;
-  const cellH = 82 / rows;
+  const maxLeft = Math.max(pad, fieldW - cardW - pad);
+  const maxTop = Math.max(pad, tableHeight - cardH - pad);
+  const usableW = Math.max(1, maxLeft - pad);
+  const usableH = Math.max(1, maxTop - pad);
+  const cellW = usableW / cols;
+  const cellH = usableH / rows;
 
   return list.map((_, idx) => {
     const col = idx % cols;
     const row = Math.floor(idx / cols);
-    const jitterX = (Math.random() - 0.5) * (cellW * 0.48);
-    const jitterY = (Math.random() - 0.5) * (cellH * 0.42);
-    const x = Math.max(3, Math.min(82, 6 + col * cellW + cellW * 0.14 + jitterX));
-    const y = Math.max(4, Math.min(86, 5 + row * cellH + cellH * 0.12 + jitterY));
-    const rot = ((idx % 2 === 0 ? 1 : -1) * (1.2 + Math.random() * 3.4)).toFixed(2);
-    return { x, y, rot };
+    const jitterX = (Math.random() - 0.5) * (cellW * 0.45);
+    const jitterY = (Math.random() - 0.5) * (cellH * 0.4);
+    const left = Math.round(Math.max(pad, Math.min(maxLeft, pad + col * cellW + cellW * 0.15 + jitterX)));
+    const top = Math.round(Math.max(pad, Math.min(maxTop, pad + row * cellH + cellH * 0.15 + jitterY)));
+    const rot = ((idx % 2 === 0 ? 1 : -1) * (1.2 + Math.random() * 3.2)).toFixed(2);
+    return { left, top, cardW, rot };
+  });
+}
+
+function clampScatteredCards() {
+  if (viewMode !== "scatter") return;
+  const cards = [...field.querySelectorAll(".memory-photo")];
+  if (!cards.length) return;
+
+  const fieldW = Math.max(280, field.clientWidth);
+  const cardW = getResponsiveCardWidth(fieldW);
+  const pad = 8;
+
+  cards.forEach(card => {
+    card.style.width = `${cardW}px`;
+    const cardH = card.offsetHeight || Math.round(cardW * 1.25) + 34;
+    const maxLeft = Math.max(pad, fieldW - cardW - pad);
+    const maxTop = Math.max(pad, field.clientHeight - cardH - pad);
+    const curLeft = parseFloat(card.style.left) || pad;
+    const curTop = parseFloat(card.style.top) || pad;
+    card.style.left = `${Math.round(Math.max(pad, Math.min(maxLeft, curLeft)))}px`;
+    card.style.top = `${Math.round(Math.max(pad, Math.min(maxTop, curTop)))}px`;
   });
 }
 
@@ -1934,8 +2090,9 @@ function renderMemories() {
 
     if (viewMode === "scatter") {
       const p = layout[i];
-      card.style.left = `${p.x}%`;
-      card.style.top = `${p.y}%`;
+      card.style.width = `${p.cardW}px`;
+      card.style.left = `${p.left}px`;
+      card.style.top = `${p.top}px`;
       card.style.setProperty("--rot", `${p.rot}deg`);
       card.style.zIndex = 2 + (i % 12);
     }
@@ -1972,6 +2129,7 @@ function renderMemories() {
 
 function makeDraggable(el, onSelect) {
   let startX = 0, startY = 0, left = 0, top = 0, moved = false, dragging = false;
+  const pad = 8;
 
   el.addEventListener("pointerdown", e => {
     if (e.button !== 0 || viewMode !== "scatter") return;
@@ -1991,8 +2149,10 @@ function makeDraggable(el, onSelect) {
     const dy = e.clientY - startY;
     if (Math.hypot(dx, dy) > 8) moved = true;
     if (moved) {
-      el.style.left = `${Math.max(0, Math.min(field.clientWidth - el.offsetWidth, left + dx))}px`;
-      el.style.top = `${Math.max(0, Math.min(field.clientHeight - el.offsetHeight, top + dy))}px`;
+      const maxLeft = Math.max(pad, field.clientWidth - el.offsetWidth - pad);
+      const maxTop = Math.max(pad, field.clientHeight - el.offsetHeight - pad);
+      el.style.left = `${Math.max(pad, Math.min(maxLeft, left + dx))}px`;
+      el.style.top = `${Math.max(pad, Math.min(maxTop, top + dy))}px`;
       el.style.transform = "rotate(0deg)";
     }
   });
@@ -2123,11 +2283,6 @@ $("randomMemory").onclick = () => {
 
 $("backTop").onclick = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
-// Render Chapters Index
-chapters.forEach(c => {
-  const b = document.createElement("button");
-  b.type = "button";
-  b.className = "chapter-row";
 // Render Chapters Index (with photo on left + note on right when opened)
 chapters.forEach(c => {
   const b = document.createElement("button");
@@ -2242,6 +2397,39 @@ $("release").onclick = () => {
 // Initialize counts & portrait watermark on load
 initPortraitWatermark();
 updateCounts();
+
+// Recalculate & clamp scattered cards cleanly on resize or orientation change
+let resizeTimer = null;
+let lastFieldWidth = field.clientWidth;
+const handleFieldResize = () => {
+  if (!$("experience").classList.contains("active")) return;
+  const nextW = field.clientWidth;
+  if (Math.abs(nextW - lastFieldWidth) > 12) {
+    lastFieldWidth = nextW;
+    if (viewMode === "scatter") {
+      renderMemories();
+    }
+  } else {
+    clampScatteredCards();
+  }
+};
+
+if (typeof ResizeObserver !== "undefined") {
+  const ro = new ResizeObserver(() => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(handleFieldResize, 120);
+  });
+  ro.observe(field);
+}
+
+window.addEventListener("resize", () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(handleFieldResize, 120);
+});
+
+window.addEventListener("orientationchange", () => {
+  setTimeout(handleFieldResize, 180);
+});
 </script>
 </body>
 </html>
