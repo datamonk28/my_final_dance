@@ -3,271 +3,2098 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#08090d"><meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#110f12">
 <title>The things we keep</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Mono:wght@400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Mono:wght@400&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300;1,6..72,400&display=swap" rel="stylesheet">
 <style>
-:root{--night:#08090d;--ink:#15151a;--paper:#e9dfce;--paper2:#d9cbb4;--muted:#a7a09a;--rust:#a66b50;--gold:#c8a879;--line:rgba(225,210,186,.18)}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--night);color:#eee8df;font-family:"DM Sans",sans-serif;font-weight:300;overflow-x:hidden}
-button{font:inherit;color:inherit}button:focus-visible{outline:2px solid var(--gold);outline-offset:5px}
-#dust{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
-.grain{position:fixed;inset:-50%;z-index:1;pointer-events:none;opacity:.08;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.45'/%3E%3C/svg%3E");animation:grain .3s steps(2) infinite}
-@keyframes grain{0%{transform:translate(0,0)}25%{transform:translate(2%,-1%)}50%{transform:translate(-1%,2%)}75%{transform:translate(1%,1%)}100%{transform:translate(-2%,-1%)}}
-main,header,footer{position:relative;z-index:2}.serif{font-family:"Cormorant Garamond",Georgia,serif}.mono{font-family:"DM Mono",monospace;text-transform:uppercase;letter-spacing:.16em;font-size:10px}
-button{cursor:pointer}.quiet{border:0;background:none;color:#b8afa5;text-decoration:underline;text-decoration-color:#62584e;text-underline-offset:5px}
-#intro{min-height:100svh;display:grid;place-items:center;text-align:center;padding:28px;position:relative;isolation:isolate}
-.intro-inner{max-width:760px;transition:opacity 1s,transform 1s}.kicker{color:var(--gold);margin-bottom:26px}
-h1{font:500 clamp(58px,10vw,130px)/.83 "Cormorant Garamond",serif;letter-spacing:-.045em;margin:0}
-h1 em{font-weight:400;color:#c3a985}
-.intro-copy{max-width:430px;margin:30px auto 32px;color:#aaa39c;line-height:1.9;font-size:14px}
-.enter{border:1px solid rgba(200,168,121,.6);background:transparent;padding:15px 24px;color:#e4d3b8;letter-spacing:.13em;text-transform:uppercase;font-size:10px;transition:.3s}
-.enter:hover{background:#c8a879;color:#111;box-shadow:0 0 38px #c8a87933}
-.tiny-note{position:absolute;bottom:28px;color:#6e6a69}
-#experience{display:none;opacity:0;transition:opacity 1s}#experience.active{display:block}#experience.shown{opacity:1}
-.topbar{position:sticky;top:0;z-index:10;display:flex;justify-content:space-between;align-items:center;padding:15px clamp(18px,4vw,58px);background:linear-gradient(#08090df2,#08090dce);backdrop-filter:blur(14px);border-bottom:1px solid #ffffff0d}
-.brand{font:600 22px "Cormorant Garamond",serif;letter-spacing:.03em}.top-actions{display:flex;gap:18px;align-items:center}.top-actions button{font-size:10px;letter-spacing:.12em;text-transform:uppercase;background:none;border:0;color:#a9a19a}
-.section{padding:100px clamp(20px,6vw,90px);max-width:1500px;margin:auto}.section-head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:35px}.section-head h2{font:500 clamp(42px,6vw,76px)/.9 "Cormorant Garamond",serif;margin:12px 0 0;letter-spacing:-.025em}.section-head p{max-width:330px;color:#9c9690;font-size:12px;line-height:1.8}
-.eyebrow{color:var(--gold)}.toolbar{display:flex;flex-wrap:wrap;gap:8px;margin:24px 0 34px;align-items:center}.filter{border:1px solid #ffffff24;background:transparent;padding:9px 13px;color:#aaa29b;font-size:10px;text-transform:uppercase;letter-spacing:.1em}.filter.active,.filter:hover{color:#e8d7bc;border-color:#b28d61;background:#b28d6114}.tool-spacer{flex:1}.text-button{border:0;background:none;color:#c4a77f;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:10px}
-#memory-field{position:relative;min-height:560px;border:1px solid #ffffff12;background:radial-gradient(ellipse at 50% 50%,#22202a66,transparent 68%);overflow:hidden}
-#memory-field:before{content:"";position:absolute;inset:0;background-image:linear-gradient(#ffffff05 1px,transparent 1px),linear-gradient(90deg,#ffffff05 1px,transparent 1px);background-size:70px 70px;opacity:.2;pointer-events:none}
-.memory-photo{position:absolute;width:clamp(112px,16vw,205px);padding:7px 7px 28px;background:#d9cfbd;box-shadow:0 13px 35px #0009;transform:rotate(var(--rot));border:0;transition:box-shadow .25s,filter .25s;cursor:grab;touch-action:none;user-select:none}
-.memory-photo:hover{z-index:8!important;box-shadow:0 18px 50px #000c;filter:brightness(1.08)}
-.memory-photo:active{cursor:grabbing}.memory-photo img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;background:#777}.memory-photo .photo-title{display:block;color:#342d27;text-align:left;font:600 15px "Cormorant Garamond",serif;padding:7px 3px 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.memory-photo .photo-index{position:absolute;right:10px;bottom:9px;color:#796d5f;font:9px "DM Mono",monospace}
-.no-photos{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:30px;color:#a9a09a;font:italic 23px "Cormorant Garamond",serif;line-height:1.6;pointer-events:none}
-.field-hint{display:flex;justify-content:space-between;color:#77716d;font-size:10px;padding:12px 2px}
-.rule{border:0;border-top:1px solid var(--line);margin:0}
-.interlude{padding:110px 20px;text-align:center;background:linear-gradient(180deg,transparent,#17151a88,transparent)}
-.interlude blockquote{max-width:800px;margin:20px auto;font:italic clamp(30px,5vw,57px)/1.12 "Cormorant Garamond",serif;color:#e0d3c2}
-.interlude .mono{color:#9d8669}
-.chapter-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
-.chapter-tile{min-height:270px;border:1px solid #ffffff20;background:#121217;position:relative;text-align:left;padding:22px;overflow:hidden;transition:.35s}
-.chapter-tile:hover{transform:translateY(-7px);border-color:#b38e65}
-.chapter-tile:after{content:"";position:absolute;width:180px;height:180px;border:1px solid #c8a87925;border-radius:50%;right:-75px;bottom:-75px;box-shadow:0 0 0 20px #c8a87908,0 0 0 40px #c8a87905}
-.chapter-tile .num{color:#b99b73}.chapter-tile h3{font:500 29px/1 "Cormorant Garamond",serif;margin:55px 0 12px}.chapter-tile p{font-size:11px;line-height:1.7;color:#99918c;max-width:200px}.chapter-tile .open-label{position:absolute;bottom:20px;left:22px;color:#c5a77d;font-size:9px;letter-spacing:.12em;text-transform:uppercase}
-.chapter-detail{display:none;margin-top:16px;padding:32px;background:#e7ddcb;color:#27221e;grid-template-columns:1fr 1.2fr;gap:25px}.chapter-detail.open{display:grid;animation:appear .45s}.chapter-detail h3{font:500 36px "Cormorant Garamond",serif;margin:0}.chapter-detail p{font:16px/1.7 "Cormorant Garamond",serif;white-space:pre-line}.chapter-detail .close-detail{justify-self:end;grid-column:1/-1;border:0;background:none;color:#4b4037;text-transform:uppercase;font-size:10px}
-@keyframes appear{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-.letters-layout{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:18px}
-.envelope{min-height:190px;border:1px solid #9e83614d;background:#17151a;position:relative;padding:25px;text-align:left;transition:.3s}
-.envelope:hover{transform:translateY(-5px);background:#211d20}
-.envelope .stamp{display:grid;place-items:center;width:32px;height:32px;border:1px solid #b18d67;color:#c6a77e;border-radius:50%;font:14px "Cormorant Garamond",serif}
-.envelope h3{font:500 25px "Cormorant Garamond",serif;margin:25px 0 7px}.envelope small{color:#817a76;font-size:9px;text-transform:uppercase;letter-spacing:.13em}
-.gift-area{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:18px}
-.gift{border:1px solid #ffffff20;background:#111116;min-height:240px;padding:25px;text-align:center;display:grid;place-items:center;align-content:center;gap:10px}
-.gift .gift-icon{font-size:43px;filter:grayscale(.5)}.gift h3{font:500 25px "Cormorant Garamond",serif;margin:0}.gift p{font-size:11px;color:#a29a93;line-height:1.7;max-width:220px;margin:0}
-.gift button{margin-top:12px;background:none;border:1px solid #a88964;color:#c9ad87;padding:9px 14px;font-size:9px;text-transform:uppercase;letter-spacing:.13em}
-.final-room{min-height:85vh;display:grid;place-items:center;text-align:center;padding:100px 24px;position:relative;overflow:hidden}
-.final-room:before{content:"";position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,#9b704222,transparent 68%);pointer-events:none}
-.final-inner{max-width:700px;position:relative}.final-inner h2{font:500 clamp(55px,9vw,105px)/.86 "Cormorant Garamond",serif;margin:20px 0 35px}.final-inner p{font:18px/1.9 "Cormorant Garamond",serif;color:#c7bdb3;white-space:pre-line}.sign{font:italic 27px "Cormorant Garamond",serif;color:#c6a77e;margin-top:35px}
-.release-btn{margin-top:35px;border:1px solid #b18d67;background:transparent;padding:13px 20px;color:#d7c1a3;font-size:9px;text-transform:uppercase;letter-spacing:.15em}
-#release-message{min-height:30px;color:#c6a77e;font:italic 19px "Cormorant Garamond",serif;margin-top:22px}
-footer{text-align:center;padding:25px;color:#625d5a;font-size:9px;letter-spacing:.15em;text-transform:uppercase;border-top:1px solid #ffffff0c}
-.modal{position:fixed;inset:0;z-index:30;background:#050508ed;display:none;place-items:center;padding:24px;backdrop-filter:blur(16px)}.modal.open{display:grid;animation:appear .25s}
-.modal-box{max-width:980px;width:100%;display:grid;grid-template-columns:1.1fr .9fr;gap:35px;align-items:center;max-height:90vh}
-.modal-box img{max-width:100%;max-height:82vh;object-fit:contain;margin:auto;box-shadow:0 20px 80px #000}
-.modal-copy .mono{color:#b99a70}.modal-copy h3{font:500 clamp(36px,5vw,60px)/.95 "Cormorant Garamond",serif;margin:18px 0}.modal-copy p{color:#bdb4ab;font:18px/1.8 "Cormorant Garamond",serif;white-space:pre-line}
-.modal-close{position:absolute;right:24px;top:22px;border:1px solid #ffffff33;background:none;color:white;width:40px;height:40px;border-radius:50%}
-.modal-nav{display:flex;gap:10px;margin-top:24px}.modal-nav button{background:none;border:1px solid #ffffff33;padding:10px 13px;color:#c8b79f;font-size:9px;text-transform:uppercase;letter-spacing:.1em}
-.toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,20px);background:#e8ddcb;color:#211d1a;padding:12px 18px;font-size:11px;opacity:0;pointer-events:none;transition:.35s;z-index:40}.toast.show{opacity:1;transform:translate(-50%,0)}
-@media(max-width:850px){.chapter-grid{grid-template-columns:repeat(2,1fr)}.chapter-tile{min-height:230px}.section-head{display:block}.section-head p{margin-top:18px}.chapter-detail{grid-template-columns:1fr}.chapter-detail .close-detail{grid-column:1}.modal-box{grid-template-columns:1fr;gap:15px;overflow:auto}.modal-box img{max-height:52vh}.modal-copy h3{margin:10px 0}.modal-copy p{font-size:16px}}
-@media(max-width:500px){.topbar{padding:13px 15px}.top-actions{gap:9px}.top-actions button{font-size:8px}.section{padding:75px 17px}#memory-field{min-height:520px}.chapter-grid{gap:8px}.chapter-tile{padding:15px;min-height:210px}.chapter-tile h3{font-size:25px;margin-top:42px}.chapter-tile .open-label{left:15px}.field-hint span:last-child{display:none}}
-@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
-.memory-photo{box-shadow:0 13px 35px #0009,0 0 42px #c8a87924;transition:box-shadow .25s,filter .25s,translate .6s ease-out}
-.memory-photo.in{animation:surface 1.8s var(--d,0s) backwards}
-@keyframes surface{from{opacity:0;filter:blur(8px);transform:translateY(30px) rotate(var(--rot)) scale(.92)}}
-#intro.leaving .intro-inner{opacity:0;transform:scale(1.07);filter:blur(8px);transition:opacity 1.1s,transform 1.1s,filter 1.1s}
-.top-actions button:hover{color:#e8d7bc}
+:root {
+  --night: #110f12;
+  --night-soft: #171419;
+  --night-elevated: #1d191f;
+  --vellum: #e8dfd1;
+  --vellum-warm: #dfd4c3;
+  --ink-dark: #1f1b18;
+  --ash: #9a9188;
+  --ash-dim: #6c645d;
+  --brass: #c59b6d;
+  --brass-soft: rgba(197, 155, 109, 0.28);
+  --rule: rgba(232, 223, 209, 0.11);
+  --rule-strong: rgba(232, 223, 209, 0.22);
+  --portrait-url: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--night);
+}
+
+body {
+  margin: 0;
+  background-color: var(--night);
+  background-image: radial-gradient(ellipse 80% 55% at 50% 0%, rgba(44, 35, 29, 0.34), transparent 72%);
+  color: var(--vellum);
+  font-family: "Newsreader", Georgia, serif;
+  font-weight: 300;
+  line-height: 1.7;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Barely perceptible paper tooth — static, quiet, zero flicker */
+.paper-grain {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  pointer-events: none;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+button:focus-visible {
+  outline: 1px solid var(--brass);
+  outline-offset: 4px;
+}
+
+.serif {
+  font-family: "Cormorant Garamond", Georgia, serif;
+}
+
+.mono {
+  font-family: "IBM Plex Mono", monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 10px;
+}
+
+/* Faded Background Portrait Watermark Layer */
+.has-portrait-bg {
+  position: relative;
+  overflow: hidden;
+}
+
+.portrait-bg {
+  position: absolute;
+  inset: 0;
+  background-image: var(--portrait-url);
+  background-size: cover;
+  background-position: center 22%;
+  background-repeat: no-repeat;
+  filter: grayscale(100%) contrast(1.08);
+  opacity: 0.065;
+  pointer-events: none;
+  z-index: 0;
+  -webkit-mask-image: radial-gradient(ellipse 68% 66% at 50% 48%, rgba(0, 0, 0, 1) 18%, rgba(0, 0, 0, 0.35) 56%, transparent 86%);
+  mask-image: radial-gradient(ellipse 68% 66% at 50% 48%, rgba(0, 0, 0, 1) 18%, rgba(0, 0, 0, 0.35) 56%, transparent 86%);
+  transition: opacity 0.8s ease;
+}
+
+.portrait-bg--sheet {
+  opacity: 0.075;
+  mix-blend-mode: multiply;
+  background-position: 78% 24%;
+  -webkit-mask-image: radial-gradient(ellipse 60% 72% at 76% 48%, rgba(0, 0, 0, 0.95) 15%, rgba(0, 0, 0, 0.3) 55%, transparent 85%);
+  mask-image: radial-gradient(ellipse 60% 72% at 76% 48%, rgba(0, 0, 0, 0.95) 15%, rgba(0, 0, 0, 0.3) 55%, transparent 85%);
+}
+
+.portrait-bg--modal {
+  opacity: 0.085;
+  background-position: center 20%;
+}
+
+.has-portrait-bg > *:not(.portrait-bg) {
+  position: relative;
+  z-index: 1;
+}
+
+/* Intro Cover Page */
+#intro {
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 40px 24px;
+  position: relative;
+  transition: opacity 0.9s ease;
+}
+
+.intro-inner {
+  max-width: 680px;
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+.kicker {
+  color: var(--brass);
+  margin-bottom: 28px;
+  opacity: 0.88;
+}
+
+h1 {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(56px, 9.5vw, 122px);
+  line-height: 0.88;
+  letter-spacing: -0.03em;
+  margin: 0;
+  color: var(--vellum);
+}
+
+h1 em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--brass);
+}
+
+.intro-copy {
+  max-width: 410px;
+  margin: 34px auto 40px;
+  color: var(--ash);
+  font-size: 17px;
+  line-height: 1.85;
+}
+
+.enter {
+  border: 0;
+  border-bottom: 1px solid var(--brass-soft);
+  background: transparent;
+  padding: 10px 4px;
+  color: var(--vellum);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.enter:hover {
+  color: var(--brass);
+  border-bottom-color: var(--brass);
+}
+
+.tiny-note {
+  position: absolute;
+  bottom: 28px;
+  color: var(--ash-dim);
+}
+
+/* Experience Container */
+#experience {
+  display: none;
+  opacity: 0;
+  transition: opacity 1.1s ease;
+}
+
+#experience.active {
+  display: block;
+}
+
+#experience.shown {
+  opacity: 1;
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 25;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px clamp(20px, 5vw, 72px);
+  background: rgba(17, 15, 18, 0.9);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--rule);
+}
+
+.brand {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 500;
+  font-size: 22px;
+  letter-spacing: 0.01em;
+  color: var(--vellum);
+}
+
+.brand span {
+  color: var(--brass);
+}
+
+.top-actions {
+  display: flex;
+  gap: 22px;
+  align-items: center;
+}
+
+.top-actions button {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  background: none;
+  border: 0;
+  color: var(--ash);
+  padding: 6px 0;
+  transition: color 0.25s ease;
+}
+
+.top-actions button:hover {
+  color: var(--brass);
+}
+
+.section {
+  padding: clamp(84px, 11vw, 136px) clamp(20px, 6vw, 88px);
+  max-width: 1360px;
+  margin: auto;
+}
+
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 36px;
+  margin-bottom: 42px;
+}
+
+.eyebrow {
+  color: var(--brass);
+  opacity: 0.9;
+}
+
+.section-head h2 {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(40px, 5.6vw, 72px);
+  line-height: 0.94;
+  margin: 14px 0 0;
+  letter-spacing: -0.02em;
+  color: var(--vellum);
+}
+
+.section-head h2 i {
+  font-style: italic;
+  color: var(--brass);
+}
+
+.section-head p {
+  max-width: 350px;
+  color: var(--ash);
+  font-size: 15.5px;
+  line-height: 1.78;
+  margin: 0;
+}
+
+/* Filter Toolbar & View Controls */
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin: 0 0 24px;
+  align-items: center;
+}
+
+.filter {
+  border: 1px solid var(--rule);
+  background: transparent;
+  padding: 8px 13px;
+  color: var(--ash);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  transition: border-color 0.25s ease, color 0.25s ease, background 0.25s ease;
+}
+
+.filter .count {
+  color: var(--ash-dim);
+  margin-left: 4px;
+}
+
+.filter:hover {
+  color: var(--vellum);
+  border-color: var(--rule-strong);
+}
+
+.filter.active {
+  color: var(--vellum);
+  border-color: var(--brass);
+  background: rgba(197, 155, 109, 0.08);
+}
+
+.filter.active .count {
+  color: var(--brass);
+}
+
+.tool-spacer {
+  flex: 1;
+}
+
+.view-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: center;
+}
+
+.view-toggle {
+  display: inline-flex;
+  border: 1px solid var(--rule);
+}
+
+.view-toggle button {
+  border: 0;
+  background: transparent;
+  padding: 7px 12px;
+  color: var(--ash);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 9.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.view-toggle button + button {
+  border-left: 1px solid var(--rule);
+}
+
+.view-toggle button.active {
+  background: rgba(197, 155, 109, 0.12);
+  color: var(--vellum);
+}
+
+.text-button {
+  border: 0;
+  background: none;
+  color: var(--ash);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  padding: 7px 4px;
+  transition: color 0.25s ease;
+}
+
+.text-button:hover {
+  color: var(--brass);
+}
+
+/* Memory Field — Scattered Table & Contact Sheet */
+#memory-field {
+  position: relative;
+  min-height: 600px;
+  border: 1px solid var(--rule);
+  background: var(--night-soft);
+  overflow: hidden;
+  transition: min-height 0.45s ease;
+}
+
+#memory-field.contact-mode {
+  min-height: auto;
+  padding: clamp(20px, 3vw, 34px);
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+  gap: 20px;
+  overflow: visible;
+}
+
+.memory-photo {
+  position: absolute;
+  width: clamp(128px, 15vw, 195px);
+  padding: 8px 8px 28px;
+  background: var(--vellum);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.52), 0 1px 2px rgba(0, 0, 0, 0.35);
+  transform: rotate(var(--rot, 0deg));
+  border: 0;
+  transition: transform 0.35s ease, box-shadow 0.3s ease, opacity 0.8s ease;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  text-align: left;
+}
+
+.memory-photo:hover {
+  z-index: 18 !important;
+  transform: rotate(0deg) translateY(-4px);
+  box-shadow: 0 22px 46px rgba(0, 0, 0, 0.68);
+}
+
+.memory-photo:active {
+  cursor: grabbing;
+}
+
+#memory-field.contact-mode .memory-photo {
+  position: relative;
+  left: auto !important;
+  top: auto !important;
+  width: 100%;
+  transform: none;
+  cursor: pointer;
+  touch-action: auto;
+}
+
+#memory-field.contact-mode .memory-photo:hover {
+  transform: translateY(-3px);
+}
+
+.photo-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  background: #231f20;
+  overflow: hidden;
+}
+
+.memory-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: sepia(0.08) contrast(0.98);
+  transition: opacity 0.3s ease;
+}
+
+/* Typographic Archival Fallback Plate when local image file is missing */
+.photo-fallback {
+  position: absolute;
+  inset: 0;
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 13px;
+  background: linear-gradient(165deg, #242022 0%, #171417 100%);
+  border: 1px solid rgba(232, 223, 209, 0.08);
+  color: var(--vellum);
+}
+
+.photo-frame.missing img {
+  display: none;
+}
+
+.photo-frame.missing .photo-fallback {
+  display: flex;
+}
+
+.fallback-tag {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 8.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--brass);
+}
+
+.fallback-title {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-style: italic;
+  font-size: 18px;
+  line-height: 1.2;
+  color: var(--vellum);
+}
+
+.fallback-file {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 8px;
+  letter-spacing: 0.08em;
+  color: var(--ash-dim);
+  word-break: break-all;
+}
+
+.memory-photo .photo-title {
+  display: block;
+  color: var(--ink-dark);
+  text-align: left;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 500;
+  font-size: 15px;
+  padding: 8px 34px 0 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.memory-photo .photo-index {
+  position: absolute;
+  right: 9px;
+  bottom: 9px;
+  color: #776d63;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 8.5px;
+  letter-spacing: 0.08em;
+}
+
+.memory-photo.settled {
+  opacity: 0.22;
+  filter: grayscale(0.4);
+  pointer-events: none;
+}
+
+.no-photos {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 30px;
+  color: var(--ash);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-style: italic;
+  font-size: 24px;
+  pointer-events: none;
+}
+
+.field-hint {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  color: var(--ash-dim);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 14px 2px 0;
+}
+
+.spread-btn {
+  border: 0;
+  border-bottom: 1px solid var(--brass-soft);
+  background: none;
+  color: var(--brass);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  padding: 3px 0;
+  transition: border-color 0.25s ease;
+}
+
+.spread-btn:hover {
+  border-bottom-color: var(--brass);
+}
+
+.rule {
+  border: 0;
+  border-top: 1px solid var(--rule);
+  margin: 0;
+}
+
+/* Interlude Quote with Faded Background Portrait */
+.interlude {
+  padding: clamp(100px, 14vw, 165px) 24px;
+  text-align: center;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  background: var(--night-soft);
+}
+
+.interlude .mono {
+  color: var(--brass);
+  opacity: 0.85;
+}
+
+.interlude blockquote {
+  max-width: 780px;
+  margin: 24px auto 0;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(32px, 5vw, 58px);
+  line-height: 1.16;
+  color: var(--vellum);
+}
+
+/* Chapters — Vertical Literary Index + Warm Reading Sheet with Portrait Watermark */
+.chapter-index {
+  border-top: 1px solid var(--rule);
+}
+
+.chapter-row {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 190px 1fr auto;
+  align-items: baseline;
+  gap: 24px;
+  padding: 26px 8px;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--rule);
+  text-align: left;
+  transition: background 0.25s ease, padding-left 0.25s ease;
+}
+
+.chapter-row:hover {
+  background: rgba(232, 223, 209, 0.025);
+  padding-left: 14px;
+}
+
+.chapter-row.active {
+  background: rgba(197, 155, 109, 0.06);
+  padding-left: 14px;
+}
+
+.chapter-row .num {
+  color: var(--brass);
+}
+
+.chapter-row h3 {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(26px, 3.2vw, 36px);
+  line-height: 1.1;
+  margin: 0;
+  color: var(--vellum);
+}
+
+.chapter-row .open-label {
+  color: var(--ash);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transition: color 0.25s ease;
+}
+
+.chapter-row:hover .open-label,
+.chapter-row.active .open-label {
+  color: var(--brass);
+}
+
+.chapter-detail {
+  display: none;
+  margin-top: 28px;
+  padding: clamp(32px, 5vw, 56px);
+  background: var(--vellum);
+  color: var(--ink-dark);
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 36px;
+  align-items: start;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+}
+
+.chapter-detail.open {
+  display: grid;
+  animation: pageReveal 0.45s ease;
+}
+
+.chapter-detail .sheet-kicker {
+  color: #7d6245;
+  margin-bottom: 12px;
+}
+
+.chapter-detail h3 {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 500;
+  font-size: clamp(32px, 4vw, 46px);
+  line-height: 1.05;
+  margin: 0;
+  color: var(--ink-dark);
+}
+
+.chapter-detail p {
+  font-family: "Newsreader", Georgia, serif;
+  font-size: 18px;
+  line-height: 1.85;
+  margin: 0;
+  color: #2d2722;
+  white-space: pre-line;
+}
+
+.chapter-detail .close-detail {
+  justify-self: end;
+  grid-column: 1 / -1;
+  border: 0;
+  border-bottom: 1px solid rgba(31, 27, 24, 0.25);
+  background: none;
+  color: #5b4f45;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 4px 0;
+}
+
+.chapter-detail .close-detail:hover {
+  color: var(--ink-dark);
+  border-bottom-color: var(--ink-dark);
+}
+
+@keyframes pageReveal {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Objects With Stories (Gifts) — With Faded Portrait Background */
+.gifts-section {
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  background: var(--night-soft);
+}
+
+.gift-area {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+.gift {
+  border: 1px solid var(--rule);
+  background: rgba(17, 15, 18, 0.78);
+  backdrop-filter: blur(4px);
+  min-height: 270px;
+  padding: 34px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: border-color 0.3s ease, background 0.3s ease;
+}
+
+.gift:hover {
+  border-color: var(--rule-strong);
+}
+
+.gift.unwrapped {
+  border-color: var(--brass-soft);
+  background: rgba(29, 25, 31, 0.88);
+}
+
+.gift-num {
+  color: var(--brass);
+  margin-bottom: 18px;
+}
+
+.gift h3 {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 400;
+  font-size: 29px;
+  line-height: 1.12;
+  margin: 0 0 14px;
+  color: var(--vellum);
+}
+
+.gift p {
+  font-size: 15.5px;
+  color: var(--ash);
+  line-height: 1.78;
+  margin: 0;
+}
+
+.gift.unwrapped p {
+  color: var(--vellum);
+  font-style: italic;
+}
+
+.gift button {
+  align-self: flex-start;
+  margin-top: 28px;
+  background: none;
+  border: 0;
+  border-bottom: 1px solid var(--brass-soft);
+  color: var(--brass);
+  padding: 4px 0;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 9.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  transition: border-color 0.25s ease;
+}
+
+.gift button:hover {
+  border-bottom-color: var(--brass);
+}
+
+/* The Words (Letters) — With Faded Portrait Background */
+.letters-section {
+  background: var(--night);
+}
+
+.letters-layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 22px;
+}
+
+.envelope {
+  min-height: 210px;
+  border: 1px solid var(--rule);
+  background: rgba(23, 20, 25, 0.82);
+  backdrop-filter: blur(4px);
+  padding: 32px 28px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: border-color 0.3s ease, transform 0.3s ease, background 0.3s ease;
+}
+
+.envelope:hover {
+  transform: translateY(-3px);
+  border-color: var(--brass-soft);
+  background: rgba(29, 25, 31, 0.9);
+}
+
+.envelope-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--brass);
+}
+
+.envelope h3 {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 400;
+  font-size: 29px;
+  line-height: 1.12;
+  margin: 28px 0 8px;
+  color: var(--vellum);
+}
+
+.envelope small {
+  color: var(--ash-dim);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 9.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+
+/* Final Room — Deep, Quiet Closing with Faded Background Portrait */
+.final-room {
+  min-height: 86vh;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: clamp(100px, 14vw, 160px) 24px;
+  border-top: 1px solid var(--rule);
+  background: var(--night-soft);
+}
+
+.final-inner {
+  max-width: 640px;
+}
+
+.final-inner h2 {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(50px, 8vw, 94px);
+  line-height: 0.9;
+  margin: 22px 0 40px;
+  color: var(--vellum);
+}
+
+.final-inner h2 em {
+  font-style: italic;
+  color: var(--brass);
+}
+
+.final-inner p {
+  font-family: "Newsreader", Georgia, serif;
+  font-size: 18.5px;
+  line-height: 1.92;
+  color: var(--vellum-warm);
+  white-space: pre-line;
+  margin: 0;
+}
+
+.sign {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-style: italic;
+  font-size: 28px;
+  color: var(--brass);
+  margin-top: 40px;
+}
+
+.release-btn {
+  margin-top: 44px;
+  border: 0;
+  border-bottom: 1px solid var(--brass-soft);
+  background: transparent;
+  padding: 8px 4px;
+  color: var(--ash);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.release-btn:hover {
+  color: var(--brass);
+  border-bottom-color: var(--brass);
+}
+
+#release-message {
+  min-height: 32px;
+  color: var(--brass);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-style: italic;
+  font-size: 21px;
+  margin-top: 24px;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+#release-message.visible {
+  opacity: 1;
+}
+
+footer {
+  text-align: center;
+  padding: 32px 20px;
+  color: var(--ash-dim);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  border-top: 1px solid var(--rule);
+}
+
+/* Modals — Lightbox & Letter Sheet */
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 35;
+  background: rgba(11, 10, 12, 0.94);
+  display: none;
+  place-items: center;
+  padding: 24px;
+  backdrop-filter: blur(10px);
+}
+
+.modal.open {
+  display: grid;
+  animation: pageReveal 0.28s ease;
+}
+
+.modal-box {
+  position: relative;
+  max-width: 1060px;
+  width: 92vw;
+  max-height: 88vh;
+  background: var(--night-soft);
+  border: 1px solid rgba(232, 223, 209, 0.14);
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.78);
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(320px, 0.85fr);
+  overflow: hidden;
+}
+
+.modal-media {
+  position: relative;
+  background: #0c0b0e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  min-height: 360px;
+  max-height: 82vh;
+  overflow: hidden;
+  border-right: 1px solid rgba(232, 223, 209, 0.1);
+}
+
+.modal-media img {
+  max-width: 100%;
+  max-height: 74vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.75);
+  border: 1px solid rgba(232, 223, 209, 0.12);
+}
+
+.modal-media.missing img {
+  display: none;
+}
+
+.modal-fallback {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: min(340px, 100%);
+  aspect-ratio: 4 / 5;
+  padding: 24px;
+  background: linear-gradient(165deg, #1d191e 0%, #110f12 100%);
+  border: 1px solid rgba(232, 223, 209, 0.14);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.65);
+  text-align: left;
+}
+
+.modal-media.missing .modal-fallback {
+  display: flex;
+}
+
+.modal-fallback .fallback-tag {
+  font-size: 9.5px;
+  color: var(--brass);
+}
+
+.modal-fallback .fallback-title {
+  font-size: 26px;
+  line-height: 1.2;
+  color: var(--vellum);
+}
+
+.modal-fallback .fallback-note {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 9.5px;
+  line-height: 1.65;
+  letter-spacing: 0.08em;
+  color: var(--ash);
+  border-top: 1px solid rgba(232, 223, 209, 0.12);
+  padding-top: 12px;
+  word-break: break-all;
+}
+
+.modal-copy {
+  padding: 36px 36px 32px;
+  overflow-y: auto;
+  max-height: 82vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 24px;
+  background: var(--night-soft);
+}
+
+.modal-copy-body {
+  padding-top: 14px;
+}
+
+.modal-copy .mono {
+  color: var(--brass);
+}
+
+.modal-copy h3 {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(32px, 3.6vw, 42px);
+  line-height: 1.06;
+  margin: 14px 0 20px;
+  color: #f0e8dc;
+}
+
+.modal-copy p {
+  color: #ddd4c7;
+  font-family: "Newsreader", Georgia, serif;
+  font-size: clamp(17px, 1.3vw, 18px);
+  line-height: 1.8;
+  white-space: pre-line;
+  margin: 0;
+}
+
+.modal-close {
+  position: absolute;
+  right: 18px;
+  top: 18px;
+  z-index: 40;
+  border: 1px solid rgba(232, 223, 209, 0.18);
+  background: #171419;
+  color: var(--vellum);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 7px 12px;
+  transition: border-color 0.25s ease, color 0.25s ease;
+}
+
+.modal-close:hover {
+  color: var(--brass);
+  border-color: var(--brass);
+}
+
+.modal-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  padding-top: 18px;
+  border-top: 1px solid var(--rule);
+}
+
+.modal-nav button {
+  background: none;
+  border: 0;
+  padding: 6px 0;
+  color: var(--ash);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.13em;
+  transition: color 0.25s ease;
+}
+
+.modal-nav button:hover {
+  color: var(--brass);
+}
+
+/* Letter Reading Sheet inside Modal */
+.letter-sheet {
+  position: relative;
+  max-width: 620px;
+  width: 100%;
+  padding: clamp(34px, 5vw, 56px);
+  background: var(--vellum);
+  color: var(--ink-dark);
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.7);
+}
+
+.letter-sheet .mono {
+  color: #7d6245;
+}
+
+.letter-sheet h3 {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 500;
+  font-size: clamp(32px, 4.5vw, 46px);
+  line-height: 1.06;
+  margin: 14px 0 24px;
+  color: var(--ink-dark);
+}
+
+.letter-sheet p {
+  font-family: "Newsreader", Georgia, serif;
+  font-size: 18px;
+  line-height: 1.88;
+  color: #2c2621;
+  white-space: pre-line;
+  margin: 0;
+}
+
+.letter-sheet .letter-foot {
+  margin-top: 32px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(31, 27, 24, 0.14);
+  color: #6d6156;
+}
+@media (max-width: 820px) {
+  .section-head {
+    display: block;
+  }
+  .section-head p {
+    margin-top: 18px;
+  }
+  .chapter-row {
+    grid-template-columns: 1fr auto;
+    gap: 8px 16px;
+  }
+  .chapter-row .num {
+    grid-column: 1 / -1;
+  }
+  .chapter-detail {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .chapter-detail .close-detail {
+    grid-column: 1;
+  }
+  .modal {
+    padding: 14px;
+  }
+  .modal-box {
+    grid-template-columns: 1fr;
+    width: 100%;
+    max-height: 92vh;
+    overflow-y: auto;
+  }
+  .modal-media {
+    min-height: 220px;
+    max-height: 46vh;
+    padding: 46px 16px 18px;
+    border-right: 0;
+    border-bottom: 1px solid rgba(232, 223, 209, 0.1);
+  }
+  .modal-media img {
+    max-height: 38vh;
+  }
+  .modal-fallback {
+    width: min(220px, 100%);
+    padding: 16px;
+  }
+  .modal-fallback .fallback-title {
+    font-size: 20px;
+  }
+  .modal-copy {
+    max-height: none;
+    overflow-y: visible;
+    padding: 24px 22px 24px;
+  }
+  .modal-copy-body {
+    padding-top: 0;
+  }
+}
+
+@media (max-width: 520px) {
+  .topbar {
+    padding: 15px 18px;
+  }
+  .top-actions {
+    gap: 14px;
+  }
+  .section {
+    padding: 76px 18px;
+  }
+  #memory-field {
+    min-height: 520px;
+  }
+  #memory-field.contact-mode {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    padding: 14px;
+  }
+  .field-hint span:first-child {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *:before, *:after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
 </style>
 </head>
 <body>
-<canvas id="dust"></canvas><div class="grain"></div>
+<div class="paper-grain" aria-hidden="true"></div>
+
 <header id="intro">
  <div class="intro-inner">
   <div class="mono kicker">An archive of the things we keep</div>
   <h1>The things<br><em>we keep.</em></h1>
   <p class="intro-copy">Not every story needs to be reopened.<br>Some deserve a quiet place to be remembered.</p>
-  <button class="enter" id="begin">Open the archive&nbsp; ↗</button>
+  <button class="enter" id="begin">Open the archive &nbsp;→</button>
  </div>
- <div class="mono tiny-note">Best experienced slowly · sound optional</div>
+ <div class="mono tiny-note">Best experienced slowly</div>
 </header>
 
 <div id="experience">
  <nav class="topbar">
-  <div class="brand">The things we keep<span style="color:#b08e68">.</span></div>
+  <div class="brand">The things we keep<span>.</span></div>
   <div class="top-actions">
-   <button id="randomMemory">Surprise me ↗</button>
-   <button id="soundBtn" aria-label="Choose or toggle background music">Sound ♪</button>
-   <button id="backTop">Back to top ↑</button>
+   <button id="randomMemory">A random memory</button>
+   <button id="backTop">Top ↑</button>
   </div>
  </nav>
+
  <main>
+  <!-- 01 / THE MEMORY FIELD -->
   <section class="section" id="archive">
    <div class="section-head">
-    <div><div class="mono eyebrow">01 / The memory field</div><h2>Pick a thread.<br><i style="color:#b99a70">Follow it somewhere.</i></h2></div>
-    <p>These photographs are scattered like things found in an old drawer. Move them around. Pick one up. Stay with it for a moment.</p>
+    <div>
+     <div class="mono eyebrow">01 / The memory field</div>
+     <h2>Pick a thread.<br><i>Follow it somewhere.</i></h2>
+    </div>
+    <p>Eighty photographs gathered across four chapters—scattered like prints on a quiet table, or laid out on a contact sheet.</p>
    </div>
+
    <div class="toolbar" id="filters">
-    <button class="filter active" data-filter="All">All fragments</button>
-    <button class="filter" data-filter="Gifts">Gifts</button>
-    <button class="filter" data-filter="Birthdays">Birthdays</button>
-    <button class="filter" data-filter="Friendship">Friendship</button>
-    <button class="filter" data-filter="Little things">Little things</button>
+    <button class="filter active" data-filter="All">All <span class="count" id="count-All">80</span></button>
+    <button class="filter" data-filter="My Firsts">My Firsts <span class="count" id="count-My Firsts">30</span></button>
+    <button class="filter" data-filter="My Stress buster">My Stress buster <span class="count" id="count-My Stress buster">10</span></button>
+    <button class="filter" data-filter="My favourites">My favourites <span class="count" id="count-My favourites">20</span></button>
+    <button class="filter" data-filter="we">we <span class="count" id="count-we">20</span></button>
     <span class="tool-spacer"></span>
-    <button class="text-button" id="scatterAgain">↻ Reshuffle</button>
+    <div class="view-controls">
+     <div class="view-toggle" role="group" aria-label="Archive layout">
+      <button type="button" class="active" id="modeScatter">Scattered table</button>
+      <button type="button" id="modeContact">Contact sheet</button>
+     </div>
+     <button class="text-button" id="scatterAgain">↻ Reshuffle</button>
+    </div>
    </div>
-   <div id="memory-field"><div class="no-photos">The photographs will find their place here.<br><small style="font:10px 'DM Mono';letter-spacing:.15em;text-transform:uppercase;color:#777">Add your images in the memories list</small></div></div>
-   <div class="field-hint"><span>Drag the photographs to rearrange your constellation</span><span>Tap a photograph to open its memory</span></div>
+
+   <div id="memory-field">
+    <div class="no-photos">The photographs will find their place here.</div>
+   </div>
+
+   <div class="field-hint">
+    <span id="hintLeft">Drag any print to rearrange · Click to read its note</span>
+    <button type="button" class="spread-btn" id="toggleSpread">Show all 80 prints on table</button>
+   </div>
   </section>
 
-  <div class="interlude"><div class="mono">A note from this side of time</div><blockquote>“Some of the smallest moments<br>leave the longest shadows.”</blockquote></div>
+  <!-- INTERLUDE QUOTE (with faded background portrait) -->
+  <div class="interlude has-portrait-bg">
+   <div class="portrait-bg" aria-hidden="true"></div>
+   <div class="mono">A note from this side of time</div>
+   <blockquote>“Some of the smallest moments<br>leave the longest shadows.”</blockquote>
+  </div>
 
+  <!-- 02 / THE CHAPTERS (Reading sheet has faded background portrait) -->
   <section class="section" id="chapters">
-   <div class="section-head"><div><div class="mono eyebrow">02 / The chapters</div><h2>Little things.<br><i style="color:#b99a70">A whole world.</i></h2></div><p>Choose a chapter. Each one opens like a page from a personal scrapbook.</p></div>
-   <div class="chapter-grid" id="chapterGrid"></div>
-   <div class="chapter-detail" id="chapterDetail"><div><div class="mono" style="color:#87694a">A page from the archive</div><h3 id="detailTitle"></h3></div><p id="detailText"></p><button class="close-detail" id="closeDetail">Close this page ×</button></div>
+   <div class="section-head">
+    <div>
+     <div class="mono eyebrow">02 / The chapters</div>
+     <h2>Little things.<br><i>A whole world.</i></h2>
+    </div>
+    <p>Choose a chapter. Each one opens like a page from a personal notebook.</p>
+   </div>
+
+   <div class="chapter-index" id="chapterGrid"></div>
+
+   <div class="chapter-detail has-portrait-bg" id="chapterDetail">
+    <div class="portrait-bg portrait-bg--sheet" aria-hidden="true"></div>
+    <div>
+     <div class="mono sheet-kicker" id="detailTag">A page from the archive</div>
+     <h3 id="detailTitle"></h3>
+    </div>
+    <p id="detailText"></p>
+    <button class="close-detail" id="closeDetail">Close this page ×</button>
+   </div>
   </section>
-  <hr class="rule">
-  <section class="section" id="gifts">
-   <div class="section-head"><div><div class="mono eyebrow">03 / Objects with stories</div><h2>Things I can<br><i style="color:#b99a70">still remember.</i></h2></div><p>Open each little box. A gift is an object; the thought behind it is the memory.</p></div>
-   <div class="gift-area" id="giftArea"></div>
+
+  <!-- 03 / OBJECTS WITH STORIES (with faded background portrait) -->
+  <section class="gifts-section has-portrait-bg" id="gifts">
+   <div class="portrait-bg" aria-hidden="true"></div>
+   <div class="section">
+    <div class="section-head">
+     <div>
+      <div class="mono eyebrow">03 / Objects with stories</div>
+      <h2>Things I can<br><i>still remember.</i></h2>
+     </div>
+     <p>Open each note. A gift is an object; the thought behind it is what stays.</p>
+    </div>
+    <div class="gift-area" id="giftArea"></div>
+   </div>
   </section>
-  <section class="section" id="letters">
-   <div class="section-head"><div><div class="mono eyebrow">04 / The words</div><h2>Unsent, but<br><i style="color:#b99a70">not forgotten.</i></h2></div><p>Tap an envelope to unfold a message. The words stay in their original voice.</p></div>
-   <div class="letters-layout" id="lettersLayout"></div>
+
+  <!-- 04 / THE WORDS (with faded background portrait) -->
+  <section class="letters-section has-portrait-bg" id="letters">
+   <div class="portrait-bg" aria-hidden="true"></div>
+   <div class="section">
+    <div class="section-head">
+     <div>
+      <div class="mono eyebrow">04 / The words</div>
+      <h2>Unsent, but<br><i>not forgotten.</i></h2>
+     </div>
+     <p>Select a note to unfold its words. Everything remains in its original voice.</p>
+    </div>
+    <div class="letters-layout" id="lettersLayout"></div>
+   </div>
   </section>
-  <section class="final-room" id="final">
+
+  <!-- 05 / THE LAST PAGE (with faded background portrait) -->
+  <section class="final-room has-portrait-bg" id="final">
+   <div class="portrait-bg" aria-hidden="true"></div>
    <div class="final-inner">
     <div class="mono eyebrow">05 / The last page</div>
-    <h2>And still,<br><em style="color:#b99a70">thank you.</em></h2>
+    <h2>And still,<br><em>thank you.</em></h2>
     <p id="finalText">Thank you for the gifts, the laughter, the conversations, the comfort and the memories.
 
-Thank you for being a part of my life.
+Thank you for being a part of my life. I won't pretend that every moment was perfect, but there were beautiful ones, and I am grateful I got to experience them.
 
-I don’t want to erase what happened or pretend that it meant nothing.
+This is not a request to return or an attempt to change what is. It is simply my way of honouring what was good, and letting it rest.
 
-There were beautiful moments, and I will always be grateful for them.
-
-Whatever tomorrow holds, I sincerely wish you happiness, peace and everything beautiful life has to offer.
-
-This is not an attempt to bring anything back. It is simply my way of saying thank you.
-
-Take care. Goodbye.</p>
+I wish you peace, happiness and a life that is kind to you.</p>
     <div class="sign">With gratitude, always.</div>
     <button class="release-btn" id="release">Let the memories settle</button>
     <div id="release-message"></div>
    </div>
   </section>
  </main>
+
  <footer>A private archive in spirit · made with care</footer>
 </div>
 
+<!-- PHOTO LIGHTBOX MODAL -->
 <div class="modal" id="memoryModal" role="dialog" aria-modal="true" aria-label="Memory detail">
- <button class="modal-close" id="modalClose" aria-label="Close">×</button>
  <div class="modal-box">
-  <img id="modalImg" alt="">
-  <div class="modal-copy"><div class="mono" id="modalCategory"></div><h3 id="modalTitle"></h3><p id="modalCaption"></p><div class="modal-nav"><button id="prevMemory">← Previous</button><button id="nextMemory">Next →</button></div></div>
+  <button class="modal-close" id="modalClose" aria-label="Close">Close ×</button>
+  <div class="modal-media" id="modalMedia">
+   <img id="modalImg" alt="">
+   <div class="modal-fallback" aria-hidden="true">
+    <span class="fallback-tag" id="modalFallbackTag"></span>
+    <span class="fallback-title" id="modalFallbackTitle"></span>
+    <span class="fallback-note" id="modalFallbackFile"></span>
+   </div>
+  </div>
+  <div class="modal-copy">
+   <div class="modal-copy-body">
+    <div class="mono" id="modalCategory"></div>
+    <h3 id="modalTitle"></h3>
+    <p id="modalCaption"></p>
+   </div>
+   <div class="modal-nav">
+    <button id="prevMemory">← Previous</button>
+    <button id="nextMemory">Next →</button>
+   </div>
+  </div>
  </div>
 </div>
+
+<!-- LETTER MODAL (with faded background portrait) -->
 <div class="modal" id="letterModal" role="dialog" aria-modal="true" aria-label="Message">
- <button class="modal-close" id="letterClose" aria-label="Close">×</button>
- <div class="modal-copy" style="max-width:620px;padding:30px"><div class="mono" style="color:#b99a70">A kept message</div><h3 id="letterTitle" class="serif" style="font-size:52px"></h3><p id="letterText"></p><div class="mono" id="letterDate" style="color:#817970;margin-top:25px"></div></div>
+ <div class="letter-sheet has-portrait-bg">
+  <button class="modal-close" id="letterClose" aria-label="Close">Close ×</button>
+  <div class="portrait-bg portrait-bg--sheet portrait-bg--modal" aria-hidden="true"></div>
+  <div class="mono">A kept message</div>
+  <h3 id="letterTitle"></h3>
+  <p id="letterText"></p>
+  <div class="mono letter-foot" id="letterDate"></div>
+ </div>
 </div>
+
 <div class="toast" id="toast"></div>
-<input type="file" id="aud" accept="audio/*" hidden><audio id="au" loop></audio>
 
 <script>
-// EDIT THESE ARRAYS. Put your actual photos in the /photos folder.
-// Keep captions to two or three sincere lines. No memories are invented by the page.
-const memories = [
- {src:"photos/photo-01.jpg",title:"My first gift",category:"Gifts",caption:"A small gift, but a memory I will always associate with thoughtfulness. Thank you for making that moment special."},
- {src:"photos/photo-02.jpg",title:"A birthday to remember",category:"Birthdays",caption:"Thank you for remembering my day and for the thought behind the gift. It meant more than I probably expressed."},
- {src:"photos/photo-03.jpg",title:"A moment of comfort",category:"Little things",caption:"Some moments do not need many words. Your presence made that moment feel a little lighter."},
- {src:"photos/photo-04.jpg",title:"The good old days",category:"Friendship",caption:"A little piece of a time I am glad I got to experience. I will remember it with gratitude."}
-];
-const chapters = [
- {title:"My first gift",tag:"01 / A beginning",text:"For the thought, the surprise and the feeling attached to that first little gesture. It was never only about the object; it was about being thought of."},
- {title:"My first birthday gift",tag:"02 / A day remembered",text:"For remembering my day and making it feel a little more special. The gift carries a date, but the memory carries the feeling."},
- {title:"My first comfort",tag:"03 / A softer moment",text:"For the moments when a conversation, a presence or a simple gesture made things lighter. Thank you for the comfort that existed in those moments."},
- {title:"My first friend",tag:"04 / The friendship",text:"For the laughter, the conversations and the friendship that made its own place in my life. I am glad that part of the story happened."},
- {title:"Little things, big memories",tag:"05 / The in-between",text:"For ordinary moments that became meaningful simply because we shared them. Sometimes it is the smallest details that stay."}
-];
-const gifts = [
- {icon:"✳",title:"The first gift",text:"A little object with a memory attached.",reveal:"Thank you for choosing it, giving it, and making that moment part of my story."},
- {icon:"✧",title:"The birthday gift",text:"A day made memorable by a thoughtful gesture.",reveal:"Thank you for remembering. I will keep the thought behind it with gratitude."},
- {icon:"⌁",title:"The things in between",text:"Small gestures that deserve their own place.",reveal:"Not every meaningful thing came wrapped. Some arrived as time, attention and kindness."}
-];
-// Replace these examples with messages you choose to keep. Do not include private messages without consent.
-const letters = [
- {title:"A little note",date:"A message to remember",text:"Replace this with a good message you want to preserve, exactly as it was written."},
- {title:"A birthday wish",date:"From another day",text:"Replace this with a birthday wish or a few lines from a conversation that still feels meaningful."},
- {title:"A small kindness",date:"Kept with care",text:"Add another message here. Keep the original wording and context."}
-];
-const field=document.getElementById("memory-field");
-let visibleMemories=[...memories], currentIndex=0;
-const $=id=>document.getElementById(id);
-function safe(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
-function toast(msg){const t=$("toast");t.textContent=msg;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),2200);}
-function enterArchive(){
- $("intro").style.display="none";$("experience").classList.add("active");
- requestAnimationFrame(()=>$("experience").classList.add("shown"));
- window.scrollTo(0,0);renderMemories();
-}
-$("begin").addEventListener("click",()=>{$("begin").disabled=true;burst=1.6;$("intro").classList.add("leaving");setTimeout(enterArchive,1100)});
-function positions(){return memories.map((m,i)=>({x:7+(i*23)%78,y:9+(i*31)%72,rot:(i%2? -1:1)*(2+(i*7)%7)}));}
-function renderMemories(){
- field.querySelectorAll(".memory-photo,.no-photos").forEach(e=>e.remove());
- const pos=positions();
- if(!visibleMemories.length){field.innerHTML='<div class="no-photos">No photographs in this chapter yet.</div>';return;}
- visibleMemories.forEach((m,i)=>{
-  const original=memories.indexOf(m),p=pos[original]||{x:10,y:10,rot:0};
-  const card=document.createElement("button");card.className="memory-photo";card.style.left=`${p.x}%`;card.style.top=`${p.y}%`;card.style.setProperty("--rot",`${p.rot}deg`);card.style.zIndex=2+i;card.classList.add("in");card.style.setProperty("--d",`${Math.min(i*.12,1.5)}s`);
-  card.innerHTML=`<img loading="lazy" decoding="async" src="${safe(m.src)}" alt="${safe(m.title)}" draggable="false"><span class="photo-title">${safe(m.title)}</span><span class="photo-index">${String(original+1).padStart(2,"0")}</span>`;
-  card.querySelector("img").addEventListener("error",()=>{card.querySelector("img").style.opacity=".12";card.querySelector("img").style.background="linear-gradient(135deg,#504b4b,#b7a48a)";});
-  card.addEventListener("click",()=>openMemory(m));
-  makeDraggable(card);field.appendChild(card);
- });
-}
-function makeDraggable(el){
- let startX,startY,left,top,moved=false;
- el.addEventListener("pointerdown",e=>{if(e.button!==0)return;startX=e.clientX;startY=e.clientY;left=el.offsetLeft;top=el.offsetTop;moved=false;el.setPointerCapture(e.pointerId);el.style.zIndex=20;});
- el.addEventListener("pointermove",e=>{if(!el.hasPointerCapture(e.pointerId))return;let dx=e.clientX-startX,dy=e.clientY-startY;if(Math.abs(dx)+Math.abs(dy)>7)moved=true;if(moved){el.style.left=`${Math.max(0,Math.min(field.clientWidth-el.offsetWidth,left+dx))}px`;el.style.top=`${Math.max(0,Math.min(field.clientHeight-el.offsetHeight,top+dy))}px`;el.style.transform="rotate(0deg)";}});
- el.addEventListener("pointerup",e=>{if(el.hasPointerCapture(e.pointerId))el.releasePointerCapture(e.pointerId);if(moved){el.dataset.dragged="yes";setTimeout(()=>delete el.dataset.dragged,100);}});
- const old=el.onclick;el.addEventListener("click",e=>{if(el.dataset.dragged==="yes"){e.stopImmediatePropagation();e.preventDefault();}});
-}
-let lastFocus=null;function openMemory(m){if(!$("memoryModal").classList.contains("open"))lastFocus=document.activeElement;setTimeout(()=>$("modalClose").focus(),30);
- currentIndex=memories.indexOf(m);$("modalImg").src=m.src;$("modalImg").alt=m.title;$("modalCategory").textContent=m.category||"A memory";$("modalTitle").textContent=m.title;$("modalCaption").textContent=m.caption;$("memoryModal").classList.add("open");document.body.style.overflow="hidden";
-}
-function closeModal(id){$(id).classList.remove("open");document.body.style.overflow="";if(lastFocus&&lastFocus.focus)lastFocus.focus();}
-$("modalClose").onclick=()=>closeModal("memoryModal");
-$("memoryModal").addEventListener("click",e=>{if(e.target===$("memoryModal"))closeModal("memoryModal");});
-function stepMemory(dir){if(!memories.length)return;currentIndex=(currentIndex+dir+memories.length)%memories.length;openMemory(memories[currentIndex]);}
-$("prevMemory").onclick=()=>stepMemory(-1);$("nextMemory").onclick=()=>stepMemory(1);
-$("filters").addEventListener("click",e=>{const b=e.target.closest("[data-filter]");if(!b)return;document.querySelectorAll(".filter").forEach(x=>x.classList.remove("active"));b.classList.add("active");visibleMemories=b.dataset.filter==="All"?[...memories]:memories.filter(m=>m.category===b.dataset.filter);renderMemories();});
-$("scatterAgain").onclick=()=>{renderMemories();toast("The photographs have found new places.");};
-$("randomMemory").onclick=()=>{if(!memories.length)return;openMemory(memories[Math.floor(Math.random()*memories.length)]);};
-$("backTop").onclick=()=>window.scrollTo({top:0,behavior:"smooth"});
-chapters.forEach((c,i)=>{const b=document.createElement("button");b.className="chapter-tile";b.innerHTML=`<div class="mono num">${c.tag}</div><h3>${safe(c.title)}</h3><p>Open this page and stay with this memory for a moment.</p><span class="open-label">Turn the page ↗</span>`;b.onclick=()=>{$("detailTitle").textContent=c.title;$("detailText").textContent=c.text;$("chapterDetail").classList.add("open");$("chapterDetail").scrollIntoView({behavior:"smooth",block:"center"});};$("chapterGrid").appendChild(b);});
-$("closeDetail").onclick=()=>$("chapterDetail").classList.remove("open");
-gifts.forEach((g,i)=>{const el=document.createElement("article");el.className="gift";el.innerHTML=`<div class="gift-icon">${g.icon}</div><h3>${safe(g.title)}</h3><p>${safe(g.text)}</p><button type="button">Unwrap the memory</button>`;el.querySelector("button").onclick=()=>{const p=el.querySelector("p");const open=el.dataset.open==="yes";p.textContent=open?g.text:g.reveal;el.dataset.open=open?"no":"yes";el.querySelector("button").textContent=open?"Unwrap the memory":"Fold it back";};$("giftArea").appendChild(el);});
-letters.forEach((l,i)=>{const b=document.createElement("button");b.className="envelope";b.innerHTML=`<span class="stamp">✉</span><h3>${safe(l.title)}</h3><small>${safe(l.date)}</small>`;b.onclick=()=>{$("letterTitle").textContent=l.title;$("letterText").textContent=l.text;$("letterDate").textContent=l.date;$("letterModal").classList.add("open");document.body.style.overflow="hidden";};$("lettersLayout").appendChild(b);});
-$("letterClose").onclick=()=>closeModal("letterModal");$("letterModal").addEventListener("click",e=>{if(e.target===$("letterModal"))closeModal("letterModal");});
-document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeModal("memoryModal");closeModal("letterModal");}if(e.key==="ArrowRight"&&$("memoryModal").classList.contains("open"))stepMemory(1);if(e.key==="ArrowLeft"&&$("memoryModal").classList.contains("open"))stepMemory(-1);});
-$("release").onclick=()=>{const btn=$("release");btn.disabled=true;btn.textContent="Letting the dust settle…";const cards=[...document.querySelectorAll(".memory-photo")];cards.forEach((c,i)=>{setTimeout(()=>{c.style.transition="all 1.4s ease";c.style.opacity="0";c.style.transform="translateY(-90px) scale(.2) rotate(18deg)";},i*90);});gather=1;setTimeout(()=>{gather=0},3800);$("release-message").textContent="Not everything beautiful is meant to last forever. Some things are meant to be experienced, cherished and remembered.";setTimeout(()=>{btn.disabled=false;btn.textContent="Return to the beginning";btn.onclick=()=>window.scrollTo({top:0,behavior:"smooth"});},1700);};
+// ============================================================================
+// 1. FADED BACKGROUND PORTRAIT FOR ALL MESSAGE SECTIONS
+// Place your portrait image at "photos/person-portrait.jpg" (or change path below).
+// If the local image file isn't found yet, a subtle, quiet silhouette fallback is applied.
+// ============================================================================
+const personPortrait = "photos/person-portrait.jpg";
 
-// Ambient drifting particles
-const canvas=$("dust"),ctx=canvas.getContext("2d");let W,H,stars=[];
-function size(){W=innerWidth;H=innerHeight;const d=Math.min(devicePixelRatio||1,2);canvas.width=W*d;canvas.height=H*d;ctx.setTransform(d,0,0,d,0,0);stars=Array.from({length:Math.min(180,Math.floor(W/7))},()=>({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.3+.2,v:Math.random()*.28+.05,a:Math.random()*.45+.1}));}
-let burst=0,gather=0;const still=matchMedia("(prefers-reduced-motion: reduce)").matches;function animate(){ctx.clearRect(0,0,W,H);stars.forEach(s=>{s.t=(s.t||0)+.012;ctx.fillStyle=`rgba(218,198,169,${s.a*(.65+.35*Math.sin(s.t*2))})`;ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fill();s.y-=s.v*(1+burst*7);s.x+=Math.sin(s.t)*.15+(s.x-W/2)*.003*burst;if(gather){s.x+=(W/2-s.x)*.012*gather;s.y+=(H*.45-s.y)*.01*gather}if(s.y<0){s.y=H;s.x=Math.random()*W}});burst*=.98;if(!still)requestAnimationFrame(animate)}
-addEventListener("resize",size);size();animate();
-// Depth parallax on the photographs (mouse only)
-addEventListener("pointermove",e=>{if(still||e.pointerType==="touch")return;const nx=e.clientX/innerWidth-.5,ny=e.clientY/innerHeight-.5;document.querySelectorAll(".memory-photo").forEach((el,i)=>{const d=.4+(i*37%60)/100;el.style.translate=`${-nx*d*28}px ${-ny*d*28}px`})},{passive:true});
-// Swipe between memories on touch screens
-let sx=null;const mm=$("memoryModal");mm.addEventListener("touchstart",e=>{sx=e.touches[0].clientX},{passive:true});mm.addEventListener("touchend",e=>{if(sx==null)return;const dx=e.changedTouches[0].clientX-sx;sx=null;if(Math.abs(dx)>60)stepMemory(dx<0?1:-1)});
-// Optional music: never autoplays; the first press lets you choose a file
-const au=$("au"),sb=$("soundBtn");
-sb.onclick=()=>{if(!au.src){$("aud").click();return}if(au.paused){au.play().catch(()=>{});sb.textContent="Mute ♪"}else{au.pause();sb.textContent="Sound ♪"}};
-$("aud").onchange=e=>{const f=e.target.files[0];if(!f)return;au.src=URL.createObjectURL(f);au.play().catch(()=>{});sb.textContent="Mute ♪"};
+// ============================================================================
+// 2. PHOTO DUMP GENERATOR & CUSTOM OVERRIDES
+// Folders expected:
+//   photos/my-firsts/01.jpg       ... 30.jpg  (30 photos)
+//   photos/stress-buster/01.jpg   ... 10.jpg  (10 photos)
+//   photos/favourites/01.jpg      ... 20.jpg  (20 photos)
+//   photos/we/01.jpg              ... 20.jpg  (20 photos)
+// ============================================================================
+function buildDump({ category, folder, count, defaultTitle, defaultCaption, overrides = {} }) {
+  return Array.from({ length: count }, (_, idx) => {
+    const num = idx + 1;
+    const pad = String(num).padStart(2, "0");
+    const custom = overrides[num] || {};
+    return {
+      src: custom.src || `photos/${folder}/${pad}.jpg`,
+      title: custom.title || `${defaultTitle} · ${pad}`,
+      category,
+      caption: custom.caption || defaultCaption
+    };
+  });
+}
+
+const memories = [
+  // 1. MY FIRSTS — 30 photos
+  ...buildDump({
+    category: "My Firsts",
+    folder: "my-firsts",
+    count: 30,
+    defaultTitle: "A first memory",
+    defaultCaption: "One of the earliest chapters—kept here because beginnings carry their own quiet weight.",
+    overrides: {
+      1: {
+        title: "My first gift",
+        caption: "A small gift, but a memory I will always associate with thoughtfulness. Thank you for making that moment special."
+      },
+      2: {
+        title: "The first birthday gift",
+        caption: "Thank you for remembering my day and for the thought behind it. It meant more than I probably expressed."
+      },
+      3: {
+        title: "Our first long talk",
+        caption: "When hours passed without either of us noticing the clock."
+      }
+    }
+  }),
+
+  // 2. MY STRESS BUSTER — 10 photos
+  ...buildDump({
+    category: "My Stress buster",
+    folder: "stress-buster",
+    count: 10,
+    defaultTitle: "A lighter hour",
+    defaultCaption: "On heavy days, this was the kind of moment that made everything feel easier to carry.",
+    overrides: {
+      1: {
+        title: "Unplanned laughter",
+        caption: "A moment when all the noise of the week simply faded out."
+      },
+      2: {
+        title: "A moment of comfort",
+        caption: "Some moments do not need many words. Your presence made that hour feel a little lighter."
+      }
+    }
+  }),
+
+  // 3. MY FAVOURITES — 20 photos
+  ...buildDump({
+    category: "My favourites",
+    folder: "favourites",
+    count: 20,
+    defaultTitle: "A favourite frame",
+    defaultCaption: "The ones I always return to first—ordinary light, effortless warmth, kept intact.",
+    overrides: {
+      1: {
+        title: "Golden hour frame",
+        caption: "One of the frames I never get tired of looking at."
+      },
+      2: {
+        title: "Just as you are",
+        caption: "An unposed moment that captured everything genuine."
+      }
+    }
+  }),
+
+  // 4. WE — 20 photos
+  ...buildDump({
+    category: "we",
+    folder: "we",
+    count: 20,
+    defaultTitle: "Two of us",
+    defaultCaption: "A piece of the time we shared—remembered without regret, held with gratitude.",
+    overrides: {
+      1: {
+        title: "The good old days",
+        caption: "A little piece of a time I am glad I got to experience. I will remember it with gratitude."
+      },
+      2: {
+        title: "Side by side",
+        caption: "Two people in the middle of an ordinary afternoon that turned into a memory."
+      }
+    }
+  })
+];
+
+// ============================================================================
+// 3. CHAPTERS, GIFTS & LETTERS
+// ============================================================================
+const chapters = [
+  {
+    title: "My first gift",
+    tag: "01 / A beginning",
+    text: "For the thought, the surprise and the feeling attached to that first little gesture. It was never only about the object; it was about being thought of."
+  },
+  {
+    title: "My first birthday gift",
+    tag: "02 / A day remembered",
+    text: "For remembering my day and making it feel a little more special. The gift carries a date, but the memory carries the feeling."
+  },
+  {
+    title: "My first comfort",
+    tag: "03 / A softer moment",
+    text: "For the moments when a conversation, a presence or a simple gesture made things lighter. Thank you for the comfort that existed in those moments."
+  },
+  {
+    title: "My first friend",
+    tag: "04 / The friendship",
+    text: "For the laughter, the conversations and the friendship that made its own place in my life. I am glad that part of the story happened."
+  },
+  {
+    title: "Little things, big memories",
+    tag: "05 / The in-between",
+    text: "For ordinary moments that became meaningful simply because we shared them. Sometimes it is the smallest details that stay."
+  }
+];
+
+const gifts = [
+  {
+    tag: "Object I",
+    title: "The first gift",
+    text: "A little object with a memory attached.",
+    reveal: "Thank you for choosing it, giving it, and making that moment part of my story."
+  },
+  {
+    tag: "Object II",
+    title: "The birthday gift",
+    text: "A day made memorable by a thoughtful gesture.",
+    reveal: "Thank you for remembering. I will keep the thought behind it with gratitude."
+  },
+  {
+    tag: "Object III",
+    title: "The things in between",
+    text: "Small gestures that deserve their own place.",
+    reveal: "Not every meaningful thing came wrapped. Some arrived as time, attention and kindness."
+  }
+];
+
+// Replace these examples with messages you choose to keep.
+const letters = [
+  {
+    title: "A little note",
+    date: "Note I · Kept with care",
+    text: "Replace this with a good message you want to preserve, exactly as it was written."
+  },
+  {
+    title: "A birthday wish",
+    date: "Note II · From another day",
+    text: "Replace this with a birthday wish or a few lines from a conversation that still feels meaningful."
+  },
+  {
+    title: "A small kindness",
+    date: "Note III · Preserved",
+    text: "Add another message here. Keep the original wording and context."
+  }
+];
+
+// ============================================================================
+// 4. APPLICATION LOGIC
+// ============================================================================
+const $ = id => document.getElementById(id);
+const field = $("memory-field");
+
+let activeFilter = "All";
+let viewMode = "scatter"; // "scatter" | "contact"
+let showAllOnTable = false;
+let filteredMemories = [...memories];
+let currentIndex = 0;
+
+function safe(s) {
+  return String(s).replace(/[&<>"']/g, c => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;"
+  }[c]));
+}
+
+function toast(msg) {
+  const t = $("toast");
+  t.textContent = msg;
+  t.classList.add("show");
+  clearTimeout(toast._timer);
+  toast._timer = setTimeout(() => t.classList.remove("show"), 2200);
+}
+
+// Apply faded portrait watermark with graceful fallback silhouette if file isn't present yet
+function initPortraitWatermark() {
+  const fallbackSilhouette = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 800'%3E%3Cdefs%3E%3CradialGradient id='g' cx='50%25' cy='40%25' r='55%25'%3E%3Cstop offset='0%25' stop-color='%23e8dfd1' stop-opacity='0.65'/%3E%3Cstop offset='100%25' stop-color='%23e8dfd1' stop-opacity='0'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect width='600' height='800' fill='url(%23g)'/%3E%3Cellipse cx='300' cy='275' rx='86' ry='108' fill='%23d8ccb9' opacity='0.45'/%3E%3Cpath d='M135 760 C145 540, 210 445, 300 445 C390 445, 455 540, 465 760 Z' fill='%23d8ccb9' opacity='0.4'/%3E%3C/svg%3E")`;
+  if (!personPortrait) {
+    document.documentElement.style.setProperty("--portrait-url", fallbackSilhouette);
+    return;
+  }
+  const probe = new Image();
+  probe.onload = () => {
+    document.documentElement.style.setProperty("--portrait-url", `url("${personPortrait}")`);
+  };
+  probe.onerror = () => {
+    document.documentElement.style.setProperty("--portrait-url", fallbackSilhouette);
+  };
+  probe.src = personPortrait;
+}
+
+// Update filter counts dynamically
+function updateCounts() {
+  const categories = ["All", "My Firsts", "My Stress buster", "My favourites", "we"];
+  categories.forEach(cat => {
+    const el = document.getElementById(`count-${cat}`);
+    if (el) {
+      el.textContent = cat === "All"
+        ? memories.length
+        : memories.filter(m => m.category === cat).length;
+    }
+  });
+}
+
+function enterArchive() {
+  $("intro").style.opacity = "0";
+  setTimeout(() => {
+    $("intro").style.display = "none";
+    $("experience").classList.add("active");
+    requestAnimationFrame(() => $("experience").classList.add("shown"));
+    window.scrollTo(0, 0);
+    renderMemories();
+  }, 420);
+}
+
+$("begin").addEventListener("click", enterArchive);
+
+// Compute natural, non-clumped positions for scattered prints
+function computeScatterLayout(list) {
+  const count = list.length;
+  const cols = window.innerWidth < 640 ? 2 : window.innerWidth < 1024 ? 4 : 5;
+  const rows = Math.max(1, Math.ceil(count / cols));
+  const rowHeight = window.innerWidth < 640 ? 225 : 255;
+  const tableHeight = Math.max(600, rows * rowHeight + 110);
+  field.style.minHeight = `${tableHeight}px`;
+
+  const cellW = 82 / cols;
+  const cellH = 82 / rows;
+
+  return list.map((_, idx) => {
+    const col = idx % cols;
+    const row = Math.floor(idx / cols);
+    const jitterX = (Math.random() - 0.5) * (cellW * 0.48);
+    const jitterY = (Math.random() - 0.5) * (cellH * 0.42);
+    const x = Math.max(3, Math.min(82, 6 + col * cellW + cellW * 0.14 + jitterX));
+    const y = Math.max(4, Math.min(86, 5 + row * cellH + cellH * 0.12 + jitterY));
+    const rot = ((idx % 2 === 0 ? 1 : -1) * (1.2 + Math.random() * 3.4)).toFixed(2);
+    return { x, y, rot };
+  });
+}
+
+function updateHintBar() {
+  const total = filteredMemories.length;
+  const spreadBtn = $("toggleSpread");
+  const hintLeft = $("hintLeft");
+
+  if (viewMode === "contact") {
+    hintLeft.textContent = `Contact sheet · Showing all ${total} prints in ${activeFilter}`;
+    spreadBtn.style.display = "none";
+    return;
+  }
+
+  hintLeft.textContent = "Drag any print to rearrange · Click to read its note";
+
+  const limit = 16;
+  if (total <= limit) {
+    spreadBtn.style.display = "none";
+  } else {
+    spreadBtn.style.display = "inline-block";
+    spreadBtn.textContent = showAllOnTable
+      ? `Show curated table (${limit} of ${total})`
+      : `Show all ${total} prints on table`;
+  }
+}
+
+function renderMemories() {
+  field.querySelectorAll(".memory-photo, .no-photos").forEach(e => e.remove());
+
+  if (!filteredMemories.length) {
+    field.style.minHeight = "400px";
+    field.innerHTML = '<div class="no-photos">No photographs in this collection yet.</div>';
+    updateHintBar();
+    return;
+  }
+
+  let itemsToRender = filteredMemories;
+  if (viewMode === "scatter" && !showAllOnTable && filteredMemories.length > 16) {
+    itemsToRender = filteredMemories.slice(0, 16);
+  }
+
+  if (viewMode === "contact") {
+    field.classList.add("contact-mode");
+    field.style.minHeight = "";
+  } else {
+    field.classList.remove("contact-mode");
+  }
+
+  const layout = viewMode === "scatter" ? computeScatterLayout(itemsToRender) : [];
+
+  itemsToRender.forEach((m, i) => {
+    const collectionIdx = filteredMemories.indexOf(m) + 1;
+    const card = document.createElement("button");
+    card.type = "button";
+    card.className = "memory-photo";
+
+    if (viewMode === "scatter") {
+      const p = layout[i];
+      card.style.left = `${p.x}%`;
+      card.style.top = `${p.y}%`;
+      card.style.setProperty("--rot", `${p.rot}deg`);
+      card.style.zIndex = 2 + (i % 12);
+    }
+
+    const shortFile = m.src.replace(/^photos\//, "");
+
+    card.innerHTML = `
+      <div class="photo-frame">
+        <img src="${safe(m.src)}" alt="${safe(m.title)}" loading="lazy" draggable="false">
+        <div class="photo-fallback" aria-hidden="true">
+          <span class="fallback-tag">${safe(m.category)} · ${String(collectionIdx).padStart(2, "0")}</span>
+          <span class="fallback-title">${safe(m.title)}</span>
+          <span class="fallback-file">${safe(shortFile)}</span>
+        </div>
+      </div>
+      <span class="photo-title">${safe(m.title)}</span>
+      <span class="photo-index">${String(collectionIdx).padStart(2, "0")}</span>
+    `;
+
+    const img = card.querySelector("img");
+    const frame = card.querySelector(".photo-frame");
+    img.addEventListener("error", () => frame.classList.add("missing"));
+
+    if (viewMode === "scatter") {
+      makeDraggable(card, () => openMemory(m));
+    } else {
+      card.addEventListener("click", () => openMemory(m));
+    }
+    field.appendChild(card);
+  });
+
+  updateHintBar();
+}
+
+function makeDraggable(el, onSelect) {
+  let startX = 0, startY = 0, left = 0, top = 0, moved = false, dragging = false;
+
+  el.addEventListener("pointerdown", e => {
+    if (e.button !== 0 || viewMode !== "scatter") return;
+    startX = e.clientX;
+    startY = e.clientY;
+    left = el.offsetLeft;
+    top = el.offsetTop;
+    moved = false;
+    dragging = true;
+    el.setPointerCapture(e.pointerId);
+    el.style.zIndex = 22;
+  });
+
+  el.addEventListener("pointermove", e => {
+    if (!dragging || !el.hasPointerCapture(e.pointerId)) return;
+    const dx = e.clientX - startX;
+    const dy = e.clientY - startY;
+    if (Math.hypot(dx, dy) > 8) moved = true;
+    if (moved) {
+      el.style.left = `${Math.max(0, Math.min(field.clientWidth - el.offsetWidth, left + dx))}px`;
+      el.style.top = `${Math.max(0, Math.min(field.clientHeight - el.offsetHeight, top + dy))}px`;
+      el.style.transform = "rotate(0deg)";
+    }
+  });
+
+  el.addEventListener("pointerup", e => {
+    if (el.hasPointerCapture(e.pointerId)) el.releasePointerCapture(e.pointerId);
+    if (dragging && !moved && typeof onSelect === "function") {
+      onSelect();
+    }
+    dragging = false;
+  });
+
+  el.addEventListener("pointercancel", e => {
+    if (el.hasPointerCapture(e.pointerId)) el.releasePointerCapture(e.pointerId);
+    dragging = false;
+  });
+
+  // Keyboard activation support (Enter / Space)
+  el.addEventListener("keydown", e => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      if (typeof onSelect === "function") onSelect();
+    }
+  });
+}
+
+// Collection-scoped Lightbox Modal
+function openMemory(m) {
+  const list = filteredMemories.length ? filteredMemories : memories;
+  currentIndex = Math.max(0, list.indexOf(m));
+  const item = list[currentIndex];
+  const posLabel = `${String(currentIndex + 1).padStart(2, "0")} / ${String(list.length).padStart(2, "0")}`;
+
+  const media = $("modalMedia");
+  const img = $("modalImg");
+  media.classList.remove("missing");
+
+  $("modalFallbackTag").textContent = `${item.category} · ${posLabel}`;
+  $("modalFallbackTitle").textContent = item.title;
+  $("modalFallbackFile").textContent = `Awaiting file at:\n${item.src}`;
+
+  img.onerror = () => media.classList.add("missing");
+  img.onload = () => media.classList.remove("missing");
+  img.src = item.src;
+  img.alt = item.title;
+
+  if (img.complete && img.naturalWidth === 0) {
+    media.classList.add("missing");
+  }
+
+  $("modalCategory").textContent = `${item.category} · ${posLabel}`;
+  $("modalTitle").textContent = item.title;
+  $("modalCaption").textContent = item.caption;
+  $("memoryModal").classList.add("open");
+  $("memoryModal").querySelector(".modal-copy").scrollTop = 0;
+  document.body.style.overflow = "hidden";
+}
+
+function closeModal(id) {
+  $(id).classList.remove("open");
+  document.body.style.overflow = "";
+}
+
+$("modalClose").onclick = () => closeModal("memoryModal");
+$("memoryModal").addEventListener("click", e => {
+  if (e.target === $("memoryModal")) closeModal("memoryModal");
+});
+
+function stepMemory(dir) {
+  const list = filteredMemories.length ? filteredMemories : memories;
+  if (!list.length) return;
+  currentIndex = (currentIndex + dir + list.length) % list.length;
+  openMemory(list[currentIndex]);
+}
+
+$("prevMemory").onclick = () => stepMemory(-1);
+$("nextMemory").onclick = () => stepMemory(1);
+
+// Filter & View Controls
+$("filters").addEventListener("click", e => {
+  const b = e.target.closest("[data-filter]");
+  if (!b) return;
+  document.querySelectorAll(".filter").forEach(x => x.classList.remove("active"));
+  b.classList.add("active");
+  activeFilter = b.dataset.filter;
+  showAllOnTable = false;
+  filteredMemories = activeFilter === "All"
+    ? [...memories]
+    : memories.filter(m => m.category === activeFilter);
+  renderMemories();
+});
+
+$("modeScatter").onclick = () => {
+  viewMode = "scatter";
+  $("modeScatter").classList.add("active");
+  $("modeContact").classList.remove("active");
+  $("scatterAgain").style.display = "inline-block";
+  renderMemories();
+};
+
+$("modeContact").onclick = () => {
+  viewMode = "contact";
+  $("modeContact").classList.add("active");
+  $("modeScatter").classList.remove("active");
+  $("scatterAgain").style.display = "none";
+  renderMemories();
+};
+
+$("toggleSpread").onclick = () => {
+  showAllOnTable = !showAllOnTable;
+  renderMemories();
+};
+
+$("scatterAgain").onclick = () => {
+  if (filteredMemories.length > 16 && !showAllOnTable) {
+    // Shuffle the subset on table so reshuffling reveals different prints
+    filteredMemories = [...filteredMemories].sort(() => Math.random() - 0.5);
+  }
+  renderMemories();
+  toast("The prints have settled into new places.");
+};
+
+$("randomMemory").onclick = () => {
+  const pool = filteredMemories.length ? filteredMemories : memories;
+  if (!pool.length) return;
+  openMemory(pool[Math.floor(Math.random() * pool.length)]);
+};
+
+$("backTop").onclick = () => window.scrollTo({ top: 0, behavior: "smooth" });
+
+// Render Chapters Index
+chapters.forEach(c => {
+  const b = document.createElement("button");
+  b.type = "button";
+  b.className = "chapter-row";
+  b.innerHTML = `
+    <span class="mono num">${safe(c.tag)}</span>
+    <h3>${safe(c.title)}</h3>
+    <span class="open-label">Read →</span>
+  `;
+  b.onclick = () => {
+    document.querySelectorAll(".chapter-row").forEach(r => r.classList.remove("active"));
+    b.classList.add("active");
+    $("detailTag").textContent = c.tag;
+    $("detailTitle").textContent = c.title;
+    $("detailText").textContent = c.text;
+    $("chapterDetail").classList.add("open");
+    $("chapterDetail").scrollIntoView({ behavior: "smooth", block: "nearest" });
+  };
+  $("chapterGrid").appendChild(b);
+});
+
+$("closeDetail").onclick = () => {
+  $("chapterDetail").classList.remove("open");
+  document.querySelectorAll(".chapter-row").forEach(r => r.classList.remove("active"));
+};
+
+// Render Gifts
+gifts.forEach(g => {
+  const el = document.createElement("article");
+  el.className = "gift";
+  el.innerHTML = `
+    <div>
+      <div class="mono gift-num">${safe(g.tag)}</div>
+      <h3>${safe(g.title)}</h3>
+      <p>${safe(g.text)}</p>
+    </div>
+    <button type="button">Unwrap the memory</button>
+  `;
+  el.querySelector("button").onclick = () => {
+    const p = el.querySelector("p");
+    const open = el.dataset.open === "yes";
+    p.textContent = open ? g.text : g.reveal;
+    el.dataset.open = open ? "no" : "yes";
+    el.classList.toggle("unwrapped", !open);
+    el.querySelector("button").textContent = open ? "Unwrap the memory" : "Fold it back";
+  };
+  $("giftArea").appendChild(el);
+});
+
+// Render Letters
+letters.forEach(l => {
+  const b = document.createElement("button");
+  b.type = "button";
+  b.className = "envelope";
+  b.innerHTML = `
+    <div class="envelope-top">
+      <span class="mono">${safe(l.date)}</span>
+      <span class="mono">Open →</span>
+    </div>
+    <div>
+      <h3>${safe(l.title)}</h3>
+      <small>Unfold this note</small>
+    </div>
+  `;
+  b.onclick = () => {
+    $("letterTitle").textContent = l.title;
+    $("letterText").textContent = l.text;
+    $("letterDate").textContent = l.date;
+    $("letterModal").classList.add("open");
+    document.body.style.overflow = "hidden";
+  };
+  $("lettersLayout").appendChild(b);
+});
+
+$("letterClose").onclick = () => closeModal("letterModal");
+$("letterModal").addEventListener("click", e => {
+  if (e.target === $("letterModal")) closeModal("letterModal");
+});
+
+// Keyboard shortcuts
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape") {
+    closeModal("memoryModal");
+    closeModal("letterModal");
+  }
+  if ($("memoryModal").classList.contains("open")) {
+    if (e.key === "ArrowRight") stepMemory(1);
+    if (e.key === "ArrowLeft") stepMemory(-1);
+  }
+});
+
+// Gentle "Let the memories settle" interaction
+$("release").onclick = () => {
+  const btn = $("release");
+  btn.disabled = true;
+  btn.textContent = "Letting the room grow quiet…";
+
+  const cards = [...document.querySelectorAll(".memory-photo")];
+  cards.forEach((c, i) => {
+    setTimeout(() => {
+      c.classList.add("settled");
+    }, Math.min(i * 25, 900));
+  });
+
+  const msg = $("release-message");
+  msg.textContent = "The memories can stay. Everything else can rest.";
+  requestAnimationFrame(() => msg.classList.add("visible"));
+
+  setTimeout(() => {
+    btn.disabled = false;
+    btn.textContent = "Return to the beginning ↑";
+    btn.onclick = () => window.scrollTo({ top: 0, behavior: "smooth" });
+  }, 1500);
+};
+
+// Initialize counts & portrait watermark on load
+initPortraitWatermark();
+updateCounts();
 </script>
-</body></html>
+</body>
+</html>
