@@ -250,6 +250,19 @@ h1 em {
   color: var(--brass);
 }
 
+.audio-control {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  border-bottom: 1px solid var(--brass-soft) !important;
+  color: var(--vellum) !important;
+}
+
+.audio-control.is-playing {
+  color: var(--brass) !important;
+  border-bottom-color: var(--brass) !important;
+}
+
 .section {
   padding: clamp(84px, 11vw, 136px) clamp(20px, 6vw, 88px);
   max-width: 1360px;
@@ -670,12 +683,12 @@ h1 em {
 .chapter-detail {
   display: none;
   margin-top: 28px;
-  padding: clamp(32px, 5vw, 56px);
+  padding: clamp(28px, 4.5vw, 48px);
   background: var(--vellum);
   color: var(--ink-dark);
-  grid-template-columns: 0.85fr 1.15fr;
-  gap: 36px;
-  align-items: start;
+  grid-template-columns: minmax(240px, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(24px, 4vw, 44px);
+  align-items: center;
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
 }
 
@@ -684,9 +697,53 @@ h1 em {
   animation: pageReveal 0.45s ease;
 }
 
+.chapter-detail-media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  background: #1b1819;
+  border: 1px solid rgba(31, 27, 24, 0.16);
+  box-shadow: 0 14px 32px rgba(24, 20, 17, 0.22);
+  overflow: hidden;
+}
+
+.chapter-detail-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: sepia(0.06);
+}
+
+.chapter-detail-media.missing img {
+  display: none;
+}
+
+.chapter-detail-fallback {
+  display: none;
+  position: absolute;
+  inset: 0;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  background: linear-gradient(165deg, #242022 0%, #161316 100%);
+  color: var(--vellum);
+}
+
+.chapter-detail-media.missing .chapter-detail-fallback {
+  display: flex;
+}
+
+.chapter-detail-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+}
+
 .chapter-detail .sheet-kicker {
   color: #7d6245;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .chapter-detail h3 {
@@ -694,7 +751,7 @@ h1 em {
   font-weight: 500;
   font-size: clamp(32px, 4vw, 46px);
   line-height: 1.05;
-  margin: 0;
+  margin: 0 0 18px;
   color: var(--ink-dark);
 }
 
@@ -707,9 +764,14 @@ h1 em {
   white-space: pre-line;
 }
 
+.chapter-detail-foot {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 16px;
+  border-top: 1px solid rgba(31, 27, 24, 0.14);
+}
+
 .chapter-detail .close-detail {
-  justify-self: end;
-  grid-column: 1 / -1;
   border: 0;
   border-bottom: 1px solid rgba(31, 27, 24, 0.25);
   background: none;
@@ -737,87 +799,9 @@ h1 em {
   }
 }
 
-/* Objects With Stories (Gifts) — With Faded Portrait Background */
-.gifts-section {
-  border-top: 1px solid var(--rule);
-  border-bottom: 1px solid var(--rule);
-  background: var(--night-soft);
-}
-
-.gift-area {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 24px;
-}
-
-.gift {
-  border: 1px solid var(--rule);
-  background: rgba(17, 15, 18, 0.78);
-  backdrop-filter: blur(4px);
-  min-height: 270px;
-  padding: 34px 30px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  transition: border-color 0.3s ease, background 0.3s ease;
-}
-
-.gift:hover {
-  border-color: var(--rule-strong);
-}
-
-.gift.unwrapped {
-  border-color: var(--brass-soft);
-  background: rgba(29, 25, 31, 0.88);
-}
-
-.gift-num {
-  color: var(--brass);
-  margin-bottom: 18px;
-}
-
-.gift h3 {
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-weight: 400;
-  font-size: 29px;
-  line-height: 1.12;
-  margin: 0 0 14px;
-  color: var(--vellum);
-}
-
-.gift p {
-  font-size: 15.5px;
-  color: var(--ash);
-  line-height: 1.78;
-  margin: 0;
-}
-
-.gift.unwrapped p {
-  color: var(--vellum);
-  font-style: italic;
-}
-
-.gift button {
-  align-self: flex-start;
-  margin-top: 28px;
-  background: none;
-  border: 0;
-  border-bottom: 1px solid var(--brass-soft);
-  color: var(--brass);
-  padding: 4px 0;
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 9.5px;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  transition: border-color 0.25s ease;
-}
-
-.gift button:hover {
-  border-bottom-color: var(--brass);
-}
-
 /* The Words (Letters) — With Faded Portrait Background */
 .letters-section {
+  border-top: 1px solid var(--rule);
   background: var(--night);
 }
 
@@ -1146,22 +1130,53 @@ footer {
   position: relative;
   max-width: 620px;
   width: 100%;
-  padding: clamp(34px, 5vw, 56px);
+  max-height: 88vh;
+  overflow-y: auto;
+  padding: clamp(28px, 5vw, 52px);
   background: var(--vellum);
   color: var(--ink-dark);
   box-shadow: 0 28px 80px rgba(0, 0, 0, 0.7);
+}
+
+.letter-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding-bottom: 16px;
+  margin-bottom: 22px;
+  border-bottom: 1px solid rgba(31, 27, 24, 0.14);
 }
 
 .letter-sheet .mono {
   color: #7d6245;
 }
 
+.letter-close-btn {
+  position: static;
+  flex-shrink: 0;
+  border: 1px solid rgba(31, 27, 24, 0.24);
+  background: rgba(31, 27, 24, 0.05);
+  color: var(--ink-dark);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 6px 11px;
+  transition: border-color 0.25s ease, background 0.25s ease;
+}
+
+.letter-close-btn:hover {
+  border-color: var(--ink-dark);
+  background: rgba(31, 27, 24, 0.1);
+}
+
 .letter-sheet h3 {
   font-family: "Cormorant Garamond", Georgia, serif;
   font-weight: 500;
   font-size: clamp(32px, 4.5vw, 46px);
-  line-height: 1.06;
-  margin: 14px 0 24px;
+  line-height: 1.08;
+  margin: 0 0 22px;
   color: var(--ink-dark);
 }
 
@@ -1196,10 +1211,10 @@ footer {
   }
   .chapter-detail {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 22px;
   }
-  .chapter-detail .close-detail {
-    grid-column: 1;
+  .chapter-detail-media {
+    max-height: 360px;
   }
   .modal {
     padding: 14px;
@@ -1242,7 +1257,11 @@ footer {
     padding: 15px 18px;
   }
   .top-actions {
-    gap: 14px;
+    gap: 11px;
+  }
+  .top-actions button {
+    font-size: 9px;
+    letter-spacing: 0.1em;
   }
   .section {
     padding: 76px 18px;
@@ -1277,15 +1296,16 @@ footer {
   <div class="mono kicker">An archive of the things we keep</div>
   <h1>The things<br><em>we keep.</em></h1>
   <p class="intro-copy">Not every story needs to be reopened.<br>Some deserve a quiet place to be remembered.</p>
-  <button class="enter" id="begin">Open the archive &nbsp;→</button>
+  <button class="enter" id="begin">Open the archive &nbsp;↗</button>
  </div>
- <div class="mono tiny-note">Best experienced slowly</div>
+ <div class="mono tiny-note">Best experienced slowly · sound begins on entry</div>
 </header>
 
 <div id="experience">
  <nav class="topbar">
   <div class="brand">The things we keep<span>.</span></div>
   <div class="top-actions">
+   <button type="button" class="audio-control" id="audioToggle" title="Toggle or switch session track">♪ Track I · Play</button>
    <button id="randomMemory">A random memory</button>
    <button id="backTop">Top ↑</button>
   </div>
@@ -1338,48 +1358,48 @@ footer {
   <!-- 02 / THE CHAPTERS (Reading sheet has faded background portrait) -->
   <section class="section" id="chapters">
    <div class="section-head">
+  <!-- 02 / THE CHAPTERS (Left photo + right reading sheet with faded background portrait) -->
+  <section class="section" id="chapters">
+   <div class="section-head">
     <div>
      <div class="mono eyebrow">02 / The chapters</div>
      <h2>Little things.<br><i>A whole world.</i></h2>
     </div>
-    <p>Choose a chapter. Each one opens like a page from a personal notebook.</p>
+    <p>Choose a chapter. Each one opens with a photograph alongside its page from the notebook.</p>
    </div>
 
    <div class="chapter-index" id="chapterGrid"></div>
 
    <div class="chapter-detail has-portrait-bg" id="chapterDetail">
     <div class="portrait-bg portrait-bg--sheet" aria-hidden="true"></div>
-    <div>
-     <div class="mono sheet-kicker" id="detailTag">A page from the archive</div>
-     <h3 id="detailTitle"></h3>
-    </div>
-    <p id="detailText"></p>
-    <button class="close-detail" id="closeDetail">Close this page ×</button>
-   </div>
-  </section>
-
-  <!-- 03 / OBJECTS WITH STORIES (with faded background portrait) -->
-  <section class="gifts-section has-portrait-bg" id="gifts">
-   <div class="portrait-bg" aria-hidden="true"></div>
-   <div class="section">
-    <div class="section-head">
-     <div>
-      <div class="mono eyebrow">03 / Objects with stories</div>
-      <h2>Things I can<br><i>still remember.</i></h2>
+    <div class="chapter-detail-media" id="detailMedia">
+     <img id="detailImg" alt="">
+     <div class="chapter-detail-fallback" aria-hidden="true">
+      <span class="fallback-tag" id="detailFallbackTag"></span>
+      <span class="fallback-title" id="detailFallbackTitle"></span>
+      <span class="fallback-file" id="detailFallbackFile"></span>
      </div>
-     <p>Open each note. A gift is an object; the thought behind it is what stays.</p>
     </div>
-    <div class="gift-area" id="giftArea"></div>
+    <div class="chapter-detail-body">
+     <div>
+      <div class="mono sheet-kicker" id="detailTag">A page from the archive</div>
+      <h3 id="detailTitle"></h3>
+      <p id="detailText"></p>
+     </div>
+     <div class="chapter-detail-foot">
+      <button type="button" class="close-detail" id="closeDetail">Close this page ×</button>
+     </div>
+    </div>
    </div>
   </section>
 
-  <!-- 04 / THE WORDS (with faded background portrait) -->
+  <!-- 03 / THE WORDS (with faded background portrait) -->
   <section class="letters-section has-portrait-bg" id="letters">
    <div class="portrait-bg" aria-hidden="true"></div>
    <div class="section">
     <div class="section-head">
      <div>
-      <div class="mono eyebrow">04 / The words</div>
+      <div class="mono eyebrow">03 / The words</div>
       <h2>Unsent, but<br><i>not forgotten.</i></h2>
      </div>
      <p>Select a note to unfold its words. Everything remains in its original voice.</p>
@@ -1388,11 +1408,11 @@ footer {
    </div>
   </section>
 
-  <!-- 05 / THE LAST PAGE (with faded background portrait) -->
+  <!-- 04 / THE LAST PAGE (with faded background portrait) -->
   <section class="final-room has-portrait-bg" id="final">
    <div class="portrait-bg" aria-hidden="true"></div>
    <div class="final-inner">
-    <div class="mono eyebrow">05 / The last page</div>
+    <div class="mono eyebrow">04 / The last page</div>
     <h2>And still,<br><em>thank you.</em></h2>
     <p id="finalText">Thank you for the gifts, the laughter, the conversations, the comfort and the memories.
 
@@ -1434,38 +1454,38 @@ I wish you peace, happiness and a life that is kind to you.</p>
     <button id="nextMemory">Next →</button>
    </div>
   </div>
- </div>
-</div>
-
-<!-- LETTER MODAL (with faded background portrait) -->
+<!-- LETTER MODAL (with faded background portrait & non-overlapping header) -->
 <div class="modal" id="letterModal" role="dialog" aria-modal="true" aria-label="Message">
  <div class="letter-sheet has-portrait-bg">
-  <button class="modal-close" id="letterClose" aria-label="Close">Close ×</button>
   <div class="portrait-bg portrait-bg--sheet portrait-bg--modal" aria-hidden="true"></div>
-  <div class="mono">A kept message</div>
+  <div class="letter-head">
+   <span class="mono">A kept message</span>
+   <button type="button" class="letter-close-btn" id="letterClose" aria-label="Close">Close ×</button>
+  </div>
   <h3 id="letterTitle"></h3>
   <p id="letterText"></p>
   <div class="mono letter-foot" id="letterDate"></div>
  </div>
 </div>
 
+<audio id="bgAudio" loop preload="metadata"></audio>
 <div class="toast" id="toast"></div>
 
 <script>
 // ============================================================================
-// 1. FADED BACKGROUND PORTRAIT FOR ALL MESSAGE SECTIONS
-// Place your portrait image at "photos/person-portrait.jpg" (or change path below).
-// If the local image file isn't found yet, a subtle, quiet silhouette fallback is applied.
+// 1. FADED BACKGROUND PORTRAIT & SESSION MUSIC CONFIGURATION
 // ============================================================================
 const personPortrait = "photos/person-portrait.jpg";
 
+// Place your two songs at "music/track-01.mp3" and "music/track-02.mp3".
+// 1st visit plays Track I; returning on 2nd visit automatically switches to Track II.
+const sessionTracks = [
+  { label: "Track I", src: "music/track-01.mp3" },
+  { label: "Track II", src: "music/track-02.mp3" }
+];
+
 // ============================================================================
 // 2. PHOTO DUMP GENERATOR & CUSTOM OVERRIDES
-// Folders expected:
-//   photos/my-firsts/01.jpg       ... 30.jpg  (30 photos)
-//   photos/stress-buster/01.jpg   ... 10.jpg  (10 photos)
-//   photos/favourites/01.jpg      ... 20.jpg  (20 photos)
-//   photos/we/01.jpg              ... 20.jpg  (20 photos)
 // ============================================================================
 function buildDump({ category, folder, count, defaultTitle, defaultCaption, overrides = {} }) {
   return Array.from({ length: count }, (_, idx) => {
@@ -1564,54 +1584,38 @@ const memories = [
 ];
 
 // ============================================================================
-// 3. CHAPTERS, GIFTS & LETTERS
+// 3. CHAPTERS (WITH LEFT-SIDE PHOTO) & LETTERS
 // ============================================================================
 const chapters = [
   {
     title: "My first gift",
     tag: "01 / A beginning",
+    image: "photos/chapters/01.jpg",
     text: "For the thought, the surprise and the feeling attached to that first little gesture. It was never only about the object; it was about being thought of."
   },
   {
     title: "My first birthday gift",
     tag: "02 / A day remembered",
+    image: "photos/chapters/02.jpg",
     text: "For remembering my day and making it feel a little more special. The gift carries a date, but the memory carries the feeling."
   },
   {
     title: "My first comfort",
     tag: "03 / A softer moment",
+    image: "photos/chapters/03.jpg",
     text: "For the moments when a conversation, a presence or a simple gesture made things lighter. Thank you for the comfort that existed in those moments."
   },
   {
     title: "My first friend",
     tag: "04 / The friendship",
+    image: "photos/chapters/04.jpg",
     text: "For the laughter, the conversations and the friendship that made its own place in my life. I am glad that part of the story happened."
   },
   {
     title: "Little things, big memories",
     tag: "05 / The in-between",
+    image: "photos/chapters/05.jpg",
     text: "For ordinary moments that became meaningful simply because we shared them. Sometimes it is the smallest details that stay."
-  }
-];
-
-const gifts = [
-  {
-    tag: "Object I",
-    title: "The first gift",
-    text: "A little object with a memory attached.",
-    reveal: "Thank you for choosing it, giving it, and making that moment part of my story."
-  },
-  {
-    tag: "Object II",
-    title: "The birthday gift",
-    text: "A day made memorable by a thoughtful gesture.",
-    reveal: "Thank you for remembering. I will keep the thought behind it with gratitude."
-  },
-  {
-    tag: "Object III",
-    title: "The things in between",
-    text: "Small gestures that deserve their own place.",
-    reveal: "Not every meaningful thing came wrapped. Some arrived as time, attention and kindness."
   }
 ];
 
@@ -1635,11 +1639,150 @@ const letters = [
 ];
 
 // ============================================================================
-// 4. APPLICATION LOGIC
+// 4. ALTERNATING SESSION MUSIC ENGINE (TRACK I ON 1ST VISIT, TRACK II ON 2ND)
 // ============================================================================
 const $ = id => document.getElementById(id);
 const field = $("memory-field");
 
+const SessionAudio = (() => {
+  const VISIT_KEY = "ttwk_visit_count";
+  let visitCount = 1;
+  try {
+    visitCount = (parseInt(localStorage.getItem(VISIT_KEY) || "0", 10) || 0) + 1;
+    localStorage.setItem(VISIT_KEY, String(visitCount));
+  } catch (e) {
+    visitCount = 1;
+  }
+
+  // Odd visits (1st, 3rd...) -> Track 0; Even visits (2nd, 4th...) -> Track 1
+  let trackIdx = (visitCount - 1) % sessionTracks.length;
+  let isPlaying = false;
+  let usingSynth = false;
+  let audioCtx = null;
+  let synthTimer = null;
+  const el = $("bgAudio");
+
+  function updateButton() {
+    const btn = $("audioToggle");
+    if (!btn) return;
+    const track = sessionTracks[trackIdx];
+    btn.textContent = `♪ ${track.label} · ${isPlaying ? "Pause" : "Play"}`;
+    btn.classList.toggle("is-playing", isPlaying);
+  }
+
+  // Gentle nocturne ambient piano fallback if local MP3 files aren't added yet
+  function startSynthFallback() {
+    usingSynth = true;
+    if (!audioCtx) {
+      const Ctx = window.AudioContext || window.webkitAudioContext;
+      if (!Ctx) return;
+      audioCtx = new Ctx();
+    }
+    if (audioCtx.state === "suspended") audioCtx.resume();
+
+    // Track I: warm D minor / F major9 voicing; Track II: softer A minor / C major7 voicing
+    const progressions = [
+      [
+        [146.83, 220.00, 261.63, 329.63], // Dm9
+        [174.61, 220.00, 261.63, 329.63], // Fmaj7
+        [116.54, 174.61, 220.00, 293.66], // Bbmaj7
+        [130.81, 196.00, 246.94, 329.63]  // Cmaj7
+      ],
+      [
+        [110.00, 164.81, 196.00, 246.94], // Am9
+        [174.61, 220.00, 261.63, 329.63], // Fmaj7
+        [130.81, 196.00, 246.94, 329.63], // Cmaj7
+        [196.00, 246.94, 293.66, 349.23]  // G7sus
+      ]
+    ];
+
+    let step = 0;
+    const playChord = () => {
+      if (!isPlaying || !usingSynth || !audioCtx) return;
+      const chords = progressions[trackIdx % progressions.length];
+      const notes = chords[step % chords.length];
+      step++;
+
+      const now = audioCtx.currentTime;
+      notes.forEach((freq, idx) => {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = idx === 0 ? "sine" : "triangle";
+        osc.frequency.setValueAtTime(freq, now + idx * 0.22);
+
+        gain.gain.setValueAtTime(0.0001, now + idx * 0.22);
+        gain.gain.exponentialRampToValueAtTime(idx === 0 ? 0.032 : 0.018, now + idx * 0.22 + 0.65);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + idx * 0.22 + 4.4);
+
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start(now + idx * 0.22);
+        osc.stop(now + idx * 0.22 + 4.6);
+      });
+    };
+
+    clearInterval(synthTimer);
+    playChord();
+    synthTimer = setInterval(playChord, 4600);
+  }
+
+  function stopSynthFallback() {
+    clearInterval(synthTimer);
+    synthTimer = null;
+  }
+
+  async function play() {
+    const track = sessionTracks[trackIdx];
+    isPlaying = true;
+    updateButton();
+
+    if (!usingSynth && el) {
+      if (!el.src.endsWith(track.src)) {
+        el.src = track.src;
+      }
+      el.volume = 0.55;
+      try {
+        await el.play();
+        return;
+      } catch (err) {
+        // Fallback smoothly to warm ambient piano if local MP3 is missing
+        startSynthFallback();
+      }
+    } else {
+      startSynthFallback();
+    }
+  }
+
+  function pause() {
+    isPlaying = false;
+    if (el) el.pause();
+    stopSynthFallback();
+    updateButton();
+  }
+
+  function toggle() {
+    if (isPlaying) {
+      pause();
+    } else {
+      play();
+    }
+  }
+
+  if (el) {
+    el.addEventListener("error", () => {
+      if (isPlaying) startSynthFallback();
+    });
+  }
+
+  updateButton();
+  return { play, pause, toggle, getTrackLabel: () => sessionTracks[trackIdx].label, getVisitCount: () => visitCount };
+})();
+
+$("audioToggle").addEventListener("click", () => SessionAudio.toggle());
+
+// ============================================================================
+// 5. ARCHIVE STATE & RENDERING
+// ============================================================================
 let activeFilter = "All";
 let viewMode = "scatter"; // "scatter" | "contact"
 let showAllOnTable = false;
@@ -1695,6 +1838,7 @@ function updateCounts() {
 }
 
 function enterArchive() {
+  SessionAudio.play();
   $("intro").style.opacity = "0";
   setTimeout(() => {
     $("intro").style.display = "none";
@@ -1702,6 +1846,9 @@ function enterArchive() {
     requestAnimationFrame(() => $("experience").classList.add("shown"));
     window.scrollTo(0, 0);
     renderMemories();
+    const visitNum = SessionAudio.getVisitCount();
+    const label = SessionAudio.getTrackLabel();
+    toast(visitNum > 1 ? `Welcome back · Playing ${label}` : `Playing ${label}`);
   }, 420);
 }
 
@@ -1981,6 +2128,11 @@ chapters.forEach(c => {
   const b = document.createElement("button");
   b.type = "button";
   b.className = "chapter-row";
+// Render Chapters Index (with photo on left + note on right when opened)
+chapters.forEach(c => {
+  const b = document.createElement("button");
+  b.type = "button";
+  b.className = "chapter-row";
   b.innerHTML = `
     <span class="mono num">${safe(c.tag)}</span>
     <h3>${safe(c.title)}</h3>
@@ -1989,6 +2141,24 @@ chapters.forEach(c => {
   b.onclick = () => {
     document.querySelectorAll(".chapter-row").forEach(r => r.classList.remove("active"));
     b.classList.add("active");
+
+    const media = $("detailMedia");
+    const img = $("detailImg");
+    media.classList.remove("missing");
+
+    $("detailFallbackTag").textContent = c.tag;
+    $("detailFallbackTitle").textContent = c.title;
+    $("detailFallbackFile").textContent = c.image;
+
+    img.onerror = () => media.classList.add("missing");
+    img.onload = () => media.classList.remove("missing");
+    img.src = c.image;
+    img.alt = c.title;
+
+    if (img.complete && img.naturalWidth === 0) {
+      media.classList.add("missing");
+    }
+
     $("detailTag").textContent = c.tag;
     $("detailTitle").textContent = c.title;
     $("detailText").textContent = c.text;
@@ -2002,29 +2172,6 @@ $("closeDetail").onclick = () => {
   $("chapterDetail").classList.remove("open");
   document.querySelectorAll(".chapter-row").forEach(r => r.classList.remove("active"));
 };
-
-// Render Gifts
-gifts.forEach(g => {
-  const el = document.createElement("article");
-  el.className = "gift";
-  el.innerHTML = `
-    <div>
-      <div class="mono gift-num">${safe(g.tag)}</div>
-      <h3>${safe(g.title)}</h3>
-      <p>${safe(g.text)}</p>
-    </div>
-    <button type="button">Unwrap the memory</button>
-  `;
-  el.querySelector("button").onclick = () => {
-    const p = el.querySelector("p");
-    const open = el.dataset.open === "yes";
-    p.textContent = open ? g.text : g.reveal;
-    el.dataset.open = open ? "no" : "yes";
-    el.classList.toggle("unwrapped", !open);
-    el.querySelector("button").textContent = open ? "Unwrap the memory" : "Fold it back";
-  };
-  $("giftArea").appendChild(el);
-});
 
 // Render Letters
 letters.forEach(l => {
