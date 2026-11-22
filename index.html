@@ -1604,102 +1604,504 @@ const sessionTracks = [
 ];
 
 // ============================================================================
-// 2. PHOTO DUMP GENERATOR & CUSTOM OVERRIDES
+// 2. MEMORIES ARCHIVE (80 INDIVIDUAL ENTRIES — EDIT ANY TITLE OR CAPTION BELOW)
 // ============================================================================
-function buildDump({ category, folder, count, defaultTitle, defaultCaption, overrides = {} }) {
-  return Array.from({ length: count }, (_, idx) => {
-    const num = idx + 1;
-    const pad = String(num).padStart(2, "0");
-    const custom = overrides[num] || {};
-    return {
-      src: custom.src || `photos/${folder}/${pad}.jpg`,
-      title: custom.title || `${defaultTitle} · ${pad}`,
-      category,
-      caption: custom.caption || defaultCaption
-    };
-  });
-}
-
 const memories = [
-  // 1. MY FIRSTS — 30 photos
-  ...buildDump({
+  // --------------------------------------------------------------------------
+  // 1. MY FIRSTS (30 photos: photos/my-firsts/01.jpg to 30.jpg)
+  // --------------------------------------------------------------------------
+  {
+    src: "photos/my-firsts/01.jpg",
+    title: "My first gift",
     category: "My Firsts",
-    folder: "my-firsts",
-    count: 30,
-    defaultTitle: "A first memory",
-    defaultCaption: "One of the earliest chapters—kept here because beginnings carry their own quiet weight.",
-    overrides: {
-      1: {
-        title: "My first gift",
-        caption: "A small gift, but a memory I will always associate with thoughtfulness. Thank you for making that moment special."
-      },
-      2: {
-        title: "The first birthday gift",
-        caption: "Thank you for remembering my day and for the thought behind it. It meant more than I probably expressed."
-      },
-      3: {
-        title: "Our first long talk",
-        caption: "When hours passed without either of us noticing the clock."
-      }
-    }
-  }),
+    caption: "A small gift, but a memory I will always associate with thoughtfulness.\nThank you for making that moment special."
+  },
+  {
+    src: "photos/my-firsts/02.jpg",
+    title: "The first birthday gift",
+    category: "My Firsts",
+    caption: "Thank you for remembering my day and for the thought behind it.\nIt meant more than I probably expressed."
+  },
+  {
+    src: "photos/my-firsts/03.jpg",
+    title: "Our first long talk",
+    category: "My Firsts",
+    caption: "When hours passed without either of us noticing the clock.\nEverything felt effortless from the very start."
+  },
+  {
+    src: "photos/my-firsts/04.jpg",
+    title: "First time we met",
+    category: "My Firsts",
+    caption: "Before we knew how many memories would follow.\nA simple beginning that stayed with me."
+  },
+  {
+    src: "photos/my-firsts/05.jpg",
+    title: "First cup of coffee together",
+    category: "My Firsts",
+    caption: "Nothing planned, nowhere to rush.\nJust two cups cooling on the table while we kept talking."
+  },
+  {
+    src: "photos/my-firsts/06.jpg",
+    title: "First photo together",
+    category: "My Firsts",
+    caption: "A little hesitant in front of the lens, yet completely genuine.\nI am glad we thought to capture this."
+  },
+  {
+    src: "photos/my-firsts/07.jpg",
+    title: "First inside joke",
+    category: "My Firsts",
+    caption: "One look across the room was enough to set both of us off.\nNobody else understood why we were laughing."
+  },
+  {
+    src: "photos/my-firsts/08.jpg",
+    title: "First walk after rain",
+    category: "My Firsts",
+    caption: "The streets were quiet and the air smelled like wet earth.\nOne of the calmest evenings I remember."
+  },
+  {
+    src: "photos/my-firsts/09.jpg",
+    title: "First handwritten note",
+    category: "My Firsts",
+    caption: "Words put on paper instead of a screen.\nI still remember the care behind every line."
+  },
+  {
+    src: "photos/my-firsts/10.jpg",
+    title: "First shared meal",
+    category: "My Firsts",
+    caption: "More time spent talking than actually eating.\nThe food was ordinary; the company made it memorable."
+  },
+  {
+    src: "photos/my-firsts/11.jpg",
+    title: "First trip out of town",
+    category: "My Firsts",
+    caption: "Watching the scenery change outside the window.\nEverything felt new when seen side by side."
+  },
+  {
+    src: "photos/my-firsts/12.jpg",
+    title: "First song I linked to you",
+    category: "My Firsts",
+    caption: "Every time this melody plays, it takes me straight back here.\nSome songs permanently belong to a person."
+  },
+  {
+    src: "photos/my-firsts/13.jpg",
+    title: "First moment of real trust",
+    category: "My Firsts",
+    caption: "Saying things out loud that I usually kept to myself.\nThank you for listening without judgment."
+  },
+  {
+    src: "photos/my-firsts/14.jpg",
+    title: "First shared umbrella",
+    category: "My Firsts",
+    caption: "Caught in a sudden downpour with nowhere to duck under.\nWe still ended up drenched and laughing anyway."
+  },
+  {
+    src: "photos/my-firsts/15.jpg",
+    title: "First quiet evening",
+    category: "My Firsts",
+    caption: "Sitting side by side without needing to fill the silence.\nThat kind of ease is rare."
+  },
+  {
+    src: "photos/my-firsts/16.jpg",
+    title: "First time seeing you laugh like that",
+    category: "My Firsts",
+    caption: "Completely unguarded and bright.\nIt changed the mood of my entire week."
+  },
+  {
+    src: "photos/my-firsts/17.jpg",
+    title: "First morning message",
+    category: "My Firsts",
+    caption: "Waking up to a thoughtful check-in before the day even began.\nSmall gestures carry the longest warmth."
+  },
+  {
+    src: "photos/my-firsts/18.jpg",
+    title: "First goodbye at the station",
+    category: "My Firsts",
+    caption: "Neither of us wanted the afternoon to wrap up.\nAlready counting down until the next time."
+  },
+  {
+    src: "photos/my-firsts/19.jpg",
+    title: "First rainy afternoon",
+    category: "My Firsts",
+    caption: "Watching rain trace lines down the glass.\nTime seemed to slow down for a couple of hours."
+  },
+  {
+    src: "photos/my-firsts/20.jpg",
+    title: "First time feeling at ease",
+    category: "My Firsts",
+    caption: "The exact moment all nervousness disappeared.\nIt felt like we had known each other for years."
+  },
+  {
+    src: "photos/my-firsts/21.jpg",
+    title: "First evening light",
+    category: "My Firsts",
+    caption: "Late afternoon sun catching everything in warm gold.\nI remember thinking I wanted to remember this exact frame."
+  },
+  {
+    src: "photos/my-firsts/22.jpg",
+    title: "First small surprise",
+    category: "My Firsts",
+    caption: "Something tiny brought along just because you thought of me.\nIt stayed with me long after that day."
+  },
+  {
+    src: "photos/my-firsts/23.jpg",
+    title: "First crowded place that felt quiet",
+    category: "My Firsts",
+    caption: "Noise all around us, yet our conversation felt like its own room.\nNothing else really registered."
+  },
+  {
+    src: "photos/my-firsts/24.jpg",
+    title: "First late-night check-in",
+    category: "My Firsts",
+    caption: "Making sure the day ended on a gentle note.\nThank you for always caring about the little details."
+  },
+  {
+    src: "photos/my-firsts/25.jpg",
+    title: "First shared silence",
+    category: "My Firsts",
+    caption: "Comfortable, unhurried, and completely natural.\nOne of my favorite kinds of closeness."
+  },
+  {
+    src: "photos/my-firsts/26.jpg",
+    title: "First candid frame",
+    category: "My Firsts",
+    caption: "Caught mid-thought before you noticed the camera.\nAlways better than any posed picture."
+  },
+  {
+    src: "photos/my-firsts/27.jpg",
+    title: "First milestone celebrated",
+    category: "My Firsts",
+    caption: "Having you there to cheer made the day twice as meaningful.\nI still carry that encouragement."
+  },
+  {
+    src: "photos/my-firsts/28.jpg",
+    title: "First detour we took",
+    category: "My Firsts",
+    caption: "Taking the longer way just to stretch the conversation.\nThe best parts were never on the itinerary."
+  },
+  {
+    src: "photos/my-firsts/29.jpg",
+    title: "First chapter turning",
+    category: "My Firsts",
+    caption: "Realizing how much had quietly grown between us.\nA turning point I look back on fondly."
+  },
+  {
+    src: "photos/my-firsts/30.jpg",
+    title: "One of the earliest frames I kept",
+    category: "My Firsts",
+    caption: "Stored away carefully from the beginning.\nEvery first had its own quiet magic."
+  },
 
-  // 2. MY STRESS BUSTER — 10 photos
-  ...buildDump({
+  // --------------------------------------------------------------------------
+  // 2. MY STRESS BUSTER (10 photos: photos/stress-buster/01.jpg to 10.jpg)
+  // --------------------------------------------------------------------------
+  {
+    src: "photos/stress-buster/01.jpg",
+    title: "Unplanned laughter",
     category: "My Stress buster",
-    folder: "stress-buster",
-    count: 10,
-    defaultTitle: "A lighter hour",
-    defaultCaption: "On heavy days, this was the kind of moment that made everything feel easier to carry.",
-    overrides: {
-      1: {
-        title: "Unplanned laughter",
-        caption: "A moment when all the noise of the week simply faded out."
-      },
-      2: {
-        title: "A moment of comfort",
-        caption: "Some moments do not need many words. Your presence made that hour feel a little lighter."
-      }
-    }
-  }),
+    caption: "A moment when all the noise of the week simply faded out.\nNothing fixed a heavy day faster than this."
+  },
+  {
+    src: "photos/stress-buster/02.jpg",
+    title: "A moment of comfort",
+    category: "My Stress buster",
+    caption: "Some moments do not need many words.\nYour presence made that hour feel a little lighter."
+  },
+  {
+    src: "photos/stress-buster/03.jpg",
+    title: "Instant exhale",
+    category: "My Stress buster",
+    caption: "The second we started talking, the tension of the day dropped.\nThank you for being my safe harbor."
+  },
+  {
+    src: "photos/stress-buster/04.jpg",
+    title: "Noise turning down",
+    category: "My Stress buster",
+    caption: "When my head was crowded with worries, this brought calm.\nA simple reminder to breathe."
+  },
+  {
+    src: "photos/stress-buster/05.jpg",
+    title: "Late-night relief",
+    category: "My Stress buster",
+    caption: "After an exhausting stretch, five minutes here reset everything.\nI always left feeling steadier."
+  },
+  {
+    src: "photos/stress-buster/06.jpg",
+    title: "Breathing room",
+    category: "My Stress buster",
+    caption: "Stepping away from deadlines and expectations for a little while.\nJust pure, unhurried ease."
+  },
+  {
+    src: "photos/stress-buster/07.jpg",
+    title: "A lighter hour",
+    category: "My Stress buster",
+    caption: "You had a way of making complicated things feel simple again.\nI am deeply grateful for those resets."
+  },
+  {
+    src: "photos/stress-buster/08.jpg",
+    title: "Softening a hard week",
+    category: "My Stress buster",
+    caption: "Even on days when nothing went right, this moment stood out.\nA bright spot in the middle of chaos."
+  },
+  {
+    src: "photos/stress-buster/09.jpg",
+    title: "The easiest distraction",
+    category: "My Stress buster",
+    caption: "Forgetting every item on my to-do list for an afternoon.\nLaughter really was the best medicine."
+  },
+  {
+    src: "photos/stress-buster/10.jpg",
+    title: "Calm after the storm",
+    category: "My Stress buster",
+    caption: "Looking at this still brings a sense of peace.\nThank you for all the times you helped me unwind."
+  },
 
-  // 3. MY FAVOURITES — 20 photos
-  ...buildDump({
+  // --------------------------------------------------------------------------
+  // 3. MY FAVOURITES (20 photos: photos/favourites/01.jpg to 20.jpg)
+  // --------------------------------------------------------------------------
+  {
+    src: "photos/favourites/01.jpg",
+    title: "Golden hour frame",
     category: "My favourites",
-    folder: "favourites",
-    count: 20,
-    defaultTitle: "A favourite frame",
-    defaultCaption: "The ones I always return to first—ordinary light, effortless warmth, kept intact.",
-    overrides: {
-      1: {
-        title: "Golden hour frame",
-        caption: "One of the frames I never get tired of looking at."
-      },
-      2: {
-        title: "Just as you are",
-        caption: "An unposed moment that captured everything genuine."
-      }
-    }
-  }),
+    caption: "One of the frames I never get tired of looking at.\nThe light and the warmth came together effortlessly."
+  },
+  {
+    src: "photos/favourites/02.jpg",
+    title: "Just as you are",
+    category: "My favourites",
+    caption: "An unposed moment that captured everything genuine.\nNothing staged, everything real."
+  },
+  {
+    src: "photos/favourites/03.jpg",
+    title: "The light in this one",
+    category: "My favourites",
+    caption: "There is something timeless about the way this turned out.\nIt feels alive every time I open it."
+  },
+  {
+    src: "photos/favourites/04.jpg",
+    title: "Right before the laugh",
+    category: "My favourites",
+    caption: "That split second when a smile is just starting to break through.\nEasily one of my top keepers."
+  },
+  {
+    src: "photos/favourites/05.jpg",
+    title: "Quiet perfection",
+    category: "My favourites",
+    caption: "No special occasion, yet it feels like a postcard.\nSimple moments often make the best photographs."
+  },
+  {
+    src: "photos/favourites/06.jpg",
+    title: "That exact expression",
+    category: "My favourites",
+    caption: "The look I always recognize immediately.\nFull of warmth, curiosity, and kindness."
+  },
+  {
+    src: "photos/favourites/07.jpg",
+    title: "Caught mid-thought",
+    category: "My favourites",
+    caption: "Looking slightly off-camera, completely in your own world.\nThere is so much quiet grace here."
+  },
+  {
+    src: "photos/favourites/08.jpg",
+    title: "The mood of this afternoon",
+    category: "My favourites",
+    caption: "Warm air, unhurried pace, and zero rush.\nThis single image holds the entire day."
+  },
+  {
+    src: "photos/favourites/09.jpg",
+    title: "Pure warmth",
+    category: "My favourites",
+    caption: "Every time I scroll past this, I pause for a second.\nSome frames just radiate goodness."
+  },
+  {
+    src: "photos/favourites/10.jpg",
+    title: "A keeper from day one",
+    category: "My favourites",
+    caption: "The moment I saw this on the screen, I knew I would save it.\nStill just as special now."
+  },
+  {
+    src: "photos/favourites/11.jpg",
+    title: "Soft around the edges",
+    category: "My favourites",
+    caption: "A little imperfect in focus, yet completely right in feeling.\nMood matters more than sharpness."
+  },
+  {
+    src: "photos/favourites/12.jpg",
+    title: "Unhurried",
+    category: "My favourites",
+    caption: "A reminder of how good it felt to simply slow down.\nOne of the gentlest frames in the archive."
+  },
+  {
+    src: "photos/favourites/13.jpg",
+    title: "Standing right there",
+    category: "My favourites",
+    caption: "I still remember the exact spot where this was taken.\nEverything around it comes back instantly."
+  },
+  {
+    src: "photos/favourites/14.jpg",
+    title: "Effortless grace",
+    category: "My favourites",
+    caption: "Not trying for the camera at all, which is why it works.\nTrue to life in every detail."
+  },
+  {
+    src: "photos/favourites/15.jpg",
+    title: "A frame I return to",
+    category: "My favourites",
+    caption: "Whenever I revisit this collection, I always open this one.\nIt never loses its charm."
+  },
+  {
+    src: "photos/favourites/16.jpg",
+    title: "Sunlight and shadow",
+    category: "My favourites",
+    caption: "The contrast in this shot caught my eye immediately.\nQuiet, cinematic, and deeply personal."
+  },
+  {
+    src: "photos/favourites/17.jpg",
+    title: "Just enough",
+    category: "My favourites",
+    caption: "Nothing extra needed in the frame.\nEverything that mattered was already there."
+  },
+  {
+    src: "photos/favourites/18.jpg",
+    title: "Still feels alive",
+    category: "My favourites",
+    caption: "You can almost hear the background chatter from that afternoon.\nA living slice of time."
+  },
+  {
+    src: "photos/favourites/19.jpg",
+    title: "Brightest frame",
+    category: "My favourites",
+    caption: "Pure joy captured without any filter.\nThank you for moments like this."
+  },
+  {
+    src: "photos/favourites/20.jpg",
+    title: "My favourite portrait",
+    category: "My favourites",
+    caption: "If I had to choose just one frame to represent the best days.\nIt would always be this one."
+  },
 
-  // 4. WE — 20 photos
-  ...buildDump({
+  // --------------------------------------------------------------------------
+  // 4. WE (20 photos: photos/we/01.jpg to 20.jpg)
+  // --------------------------------------------------------------------------
+  {
+    src: "photos/we/01.jpg",
+    title: "The good old days",
     category: "we",
-    folder: "we",
-    count: 20,
-    defaultTitle: "Two of us",
-    defaultCaption: "A piece of the time we shared—remembered without regret, held with gratitude.",
-    overrides: {
-      1: {
-        title: "The good old days",
-        caption: "A little piece of a time I am glad I got to experience. I will remember it with gratitude."
-      },
-      2: {
-        title: "Side by side",
-        caption: "Two people in the middle of an ordinary afternoon that turned into a memory."
-      }
-    }
-  })
+    caption: "A little piece of a time I am glad I got to experience.\nI will remember it with gratitude."
+  },
+  {
+    src: "photos/we/02.jpg",
+    title: "Side by side",
+    category: "we",
+    caption: "Two people in the middle of an ordinary afternoon that turned into a memory.\nSimple and unforgettable."
+  },
+  {
+    src: "photos/we/03.jpg",
+    title: "Our own small orbit",
+    category: "we",
+    caption: "For a little while, the rest of the world felt far away.\nJust us catching up on life."
+  },
+  {
+    src: "photos/we/04.jpg",
+    title: "Across the table",
+    category: "we",
+    caption: "Countless conversations happened in seats just like these.\nEvery one of them left a mark."
+  },
+  {
+    src: "photos/we/05.jpg",
+    title: "Walking the same pace",
+    category: "we",
+    caption: "No destination in particular, just matching steps.\nSome of our best talks happened while walking."
+  },
+  {
+    src: "photos/we/06.jpg",
+    title: "Two shadows, one evening",
+    category: "we",
+    caption: "Long shadows stretching out as the sun went down.\nA quiet closing to a wonderful day."
+  },
+  {
+    src: "photos/we/07.jpg",
+    title: "In the middle of it all",
+    category: "we",
+    caption: "Busy streets around us, yet completely in sync.\nI am glad we captured this moment together."
+  },
+  {
+    src: "photos/we/08.jpg",
+    title: "A shared pause",
+    category: "we",
+    caption: "Taking a breather together in the middle of a hectic week.\nMoments like this anchored everything."
+  },
+  {
+    src: "photos/we/09.jpg",
+    title: "Between words",
+    category: "we",
+    caption: "Even without speaking, the understanding was always there.\nA rare kind of companionship."
+  },
+  {
+    src: "photos/we/10.jpg",
+    title: "Right next to each other",
+    category: "we",
+    caption: "Shoulder to shoulder, smiling for the camera.\nLooking back at this always brings a gentle smile."
+  },
+  {
+    src: "photos/we/11.jpg",
+    title: "Our quiet rhythm",
+    category: "we",
+    caption: "We had our own easy tempo whenever we spent time together.\nNothing ever felt forced."
+  },
+  {
+    src: "photos/we/12.jpg",
+    title: "A day that belonged to us",
+    category: "we",
+    caption: "From morning till evening, everything lined up.\nOne of the chapters I hold closest."
+  },
+  {
+    src: "photos/we/13.jpg",
+    title: "Shared warmth",
+    category: "we",
+    caption: "You can see the genuine friendship in both our faces.\nThank you for every bit of kindness."
+  },
+  {
+    src: "photos/we/14.jpg",
+    title: "Looking the same way",
+    category: "we",
+    caption: "Both distracted by something just out of frame.\nA candid snapshot of our time together."
+  },
+  {
+    src: "photos/we/15.jpg",
+    title: "Nothing hurried between us",
+    category: "we",
+    caption: "Time always felt generous when we were hanging out.\nI miss that unhurried ease."
+  },
+  {
+    src: "photos/we/16.jpg",
+    title: "The space we made",
+    category: "we",
+    caption: "A corner of trust, humor, and mutual care.\nIt meant the world while it lasted."
+  },
+  {
+    src: "photos/we/17.jpg",
+    title: "Just us in the frame",
+    category: "we",
+    caption: "No crowd, no backdrop—just two friends.\nHonest and unfiltered."
+  },
+  {
+    src: "photos/we/18.jpg",
+    title: "A piece of our timeline",
+    category: "we",
+    caption: "One milestone among many we crossed along the way.\nGrateful for every step we shared."
+  },
+  {
+    src: "photos/we/19.jpg",
+    title: "Stillness together",
+    category: "we",
+    caption: "Peaceful, grounded, and grateful to be there.\nA memory kept safely in amber."
+  },
+  {
+    src: "photos/we/20.jpg",
+    title: "What stayed between us",
+    category: "we",
+    caption: "Even as paths move forward, the good remains untouched.\nThank you for all of it."
+  }
 ];
 
 // ============================================================================
